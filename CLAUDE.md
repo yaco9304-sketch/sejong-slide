@@ -13,7 +13,7 @@ for the main SVG family and the shared SVG steps that explicitly invoke it.
 
 ## Project Overview
 
-PPT Master is a presentation workflow package with SVG-authoring and direct-PPTX
+sejong-slide is a presentation workflow package with SVG-authoring and direct-PPTX
 route families. The main SVG family uses Strategist → Image_Generator → Executor
 to convert source documents into editable DrawingML. Direct-PPTX routes preserve
 an existing PowerPoint package and use their own execution gates.

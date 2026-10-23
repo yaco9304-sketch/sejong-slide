@@ -62,11 +62,11 @@ prototype size remain unchanged.
 
 | Metadata | Placement | Behavior |
 |---|---|---|
-| `data-pptx-master="master-default"` | root `<svg>` | Binds the slide to one generated Slide Master key |
+| `data-pptx-master="master-default"` | root `<svg>` | Binds the slide to one generated sejong-slide key |
 | `data-pptx-master-name="Default Master"` | root `<svg>` | Sets the Master picker/display name |
 | `data-pptx-layout="content"` | root `<svg>` | Binds the slide to one generated reusable layout key |
 | `data-pptx-layout-name="Title and Content"` | root `<svg>` | Sets the PowerPoint layout-picker name; defaults from the layout key |
-| `data-pptx-layer="master"` | direct atomic visual child | Moves one repeated static object/background into the named Slide Master; `<g>` is forbidden |
+| `data-pptx-layer="master"` | direct atomic visual child | Moves one repeated static object/background into the named sejong-slide; `<g>` is forbidden |
 | `data-pptx-layer="layout"` | direct atomic visual child | Moves one repeated static object/background into the selected Layout; `<g>` is forbidden |
 | `data-pptx-layer="slide"` | direct full-canvas solid `<rect>` only | Writes a one-page override as Slide `p:bg` |
 | `data-pptx-placeholder="..."` | direct slot `<g id>` | Declares a reusable Layout slot whose visible content remains Slide-local |

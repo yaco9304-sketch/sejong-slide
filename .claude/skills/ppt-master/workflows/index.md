@@ -1,5 +1,5 @@
 ---
-description: Registry of standalone PPT Master workflows
+description: Registry of standalone sejong-slide workflows
 ---
 
 # Workflow Registry

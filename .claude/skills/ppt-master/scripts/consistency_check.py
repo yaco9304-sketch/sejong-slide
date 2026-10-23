@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Cross-Page Consistency Checker
+sejong-slide - Cross-Page Consistency Checker
 
 Compares every generated page against an anchor-derived vocabulary seed:
 horizontal chrome-line y positions, spec_lock palette membership, font-size

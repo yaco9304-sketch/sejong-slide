@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master project management helpers.
+"""sejong-slide project management helpers.
 
 Usage:
     python3 scripts/project_manager.py init <project_name> [--format ppt169] [--dir <path>]
@@ -901,7 +901,7 @@ class ProjectManager:
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser."""
     parser = argparse.ArgumentParser(
-        description="PPT Master project management helpers.",
+        description="sejong-slide project management helpers.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Examples:
   python3 scripts/project_manager.py init demo --format ppt169

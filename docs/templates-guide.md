@@ -1,6 +1,6 @@
 # Templates Guide: Use, Derive, and Boundaries
 
-A PPT Master "template" is a **structure + style** preset bundle: complete standalone SVG pages whose metadata explicitly identifies one Master and Layout, atomic fixed-layer objects, and grouped content slots, plus `design_spec.md` and matching assets. Export deterministically reconstructs native PowerPoint structure from those SVGs.
+A sejong-slide "template" is a **structure + style** preset bundle: complete standalone SVG pages whose metadata explicitly identifies one Master and Layout, atomic fixed-layer objects, and grouped content slots, plus `design_spec.md` and matching assets. Export deterministically reconstructs native PowerPoint structure from those SVGs.
 
 This guide answers three questions:
 
@@ -109,7 +109,7 @@ When you describe a style, the AI doesn't pick a template — it interprets the 
 
 ## 2. Derive a new template (the focus)
 
-Turn a PPT you like, a brand guideline, or an existing PPTX file into a PPT Master template. This is the core of this guide.
+Turn a PPT you like, a brand guideline, or an existing PPTX file into a sejong-slide template. This is the core of this guide.
 
 ### Entry point: the `/create-template` workflow
 

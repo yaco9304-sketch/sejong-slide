@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Environment Preflight
+sejong-slide - Environment Preflight
 
 Pre-pipeline environment gate. Run once after project init (SKILL.md Step 2)
 so a long deck run never dies mid-pipeline on a missing dependency. Fails
@@ -176,7 +176,7 @@ def check_officecli() -> list[str]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Pre-pipeline environment gate for PPT Master.",
+        description="Pre-pipeline environment gate for sejong-slide.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--needs-images", action="store_true",

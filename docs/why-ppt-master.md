@@ -1,10 +1,10 @@
-# Why PPT Master
+# Why sejong-slide
 
 ---
 
-There are dozens of AI presentation tools. This page explains what PPT Master does differently — and where it's not the right choice.
+There are dozens of AI presentation tools. This page explains what sejong-slide does differently — and where it's not the right choice.
 
-I'm [Hugo He](https://www.hehugo.com/), an investment & finance professional who builds presentations every day. PPT Master is an open-source tool I've spent extensive time refining — because I'm its most demanding user.
+sejong-slide adapts the open-source [PPT Master](https://github.com/hugohe3/ppt-master) workflow by [Hugo He](https://www.hehugo.com/) for elementary lessons and teacher training or guidance. This comparison is adapted from that upstream documentation.
 
 ## 1. Real PowerPoint Output — Not Images, Not Web Screenshots
 
@@ -16,7 +16,7 @@ Most AI presentation tools take one of three approaches, each with a hard limita
 - **HTML/CSS rendering** → Gamma, Tome, and similar tools look great in the browser, but HTML describes document flow while PowerPoint is a canvas. Exporting to PPTX inevitably breaks layouts and flattens elements.
 - **python-pptx / direct generation** → ChatGPT and similar tools build PPTX programmatically. Elements are editable, but AI lacks the training data to produce complex designs — the result is basic text boxes and bullet lists.
 
-PPT Master takes a fourth path — **AI generates SVG, then scripts convert SVG to DrawingML**. This works because SVG and DrawingML are fundamentally the same kind of thing — both are absolute-coordinate 2D vector formats where rectangles, paths, gradients, and shadows map one-to-one. The conversion is a dialect translation, not a format mismatch.
+sejong-slide takes a fourth path — **AI generates SVG, then scripts convert SVG to DrawingML**. This works because SVG and DrawingML are fundamentally the same kind of thing — both are absolute-coordinate 2D vector formats where rectangles, paths, gradients, and shadows map one-to-one. The conversion is a dialect translation, not a format mismatch.
 
 In the exported PPTX, every shape, text box, gradient, and shadow is a native PowerPoint object. Click anything, edit it — just like you built it by hand.
 
@@ -26,11 +26,11 @@ In the exported PPTX, every shape, text box, gradient, and shadow is a native Po
 
 ## 2. Transparent Cost — You Pay Your AI Provider, Not Another Subscription
 
-PPT Master itself is free and open source. The only cost is your own AI model usage.
+sejong-slide itself is free and open source. The only cost is your own AI model usage.
 
-AI tools across the industry are shifting to usage-based billing — you pay for what you actually consume. PPT Master works with this model naturally: there's no separate PPT subscription, no proprietary credits, no per-seat fee for a presentation platform on top of what you're already paying for AI.
+AI tools across the industry are shifting to usage-based billing — you pay for what you actually consume. sejong-slide works with this model naturally: there's no separate PPT subscription, no proprietary credits, no per-seat fee for a presentation platform on top of what you're already paying for AI.
 
-For comparison, Gamma subscriptions run $8–20/month, Beautiful.ai $12–45/month — regardless of how much you actually use them. PPT Master adds zero cost on top of your existing AI spend.
+For comparison, Gamma subscriptions run $8–20/month, Beautiful.ai $12–45/month — regardless of how much you actually use them. sejong-slide adds zero cost on top of your existing AI spend.
 
 ---
 
@@ -46,9 +46,9 @@ No third-party server stores your source documents or output. This matters for f
 
 Your workflow shouldn't be held hostage by any single company. Today you depend on their platform; tomorrow they raise prices, change the rules, or shut down — and everything you've built on top of it is gone. That's not what open source should look like.
 
-PPT Master is a framework, not a plugin for a specific IDE. **On editors:** Claude Code, VS Code Copilot, Cursor, Codebuddy IDE, and whatever comes next — they all work. **On models:** Claude produces the best results, but GPT, Gemini, Kimi, MiniMax, and others can all drive PPT Master — the difference is in layout precision, and as models improve, these gaps will narrow.
+sejong-slide is a framework, not a plugin for a specific IDE. **On editors:** Claude Code, VS Code Copilot, Cursor, Codebuddy IDE, and whatever comes next — they all work. **On models:** Claude produces the best results, but GPT, Gemini, Kimi, MiniMax, and others can all drive sejong-slide — the difference is in layout precision, and as models improve, these gaps will narrow.
 
-The choice is yours. PPT Master doesn't make that decision for you.
+The choice is yours. sejong-slide doesn't make that decision for you.
 
 ---
 
@@ -68,7 +68,7 @@ Output is not limited to standard 16:9 and 4:3 slide ratios. Xiaohongshu 3:4, We
 
 ---
 
-## Where PPT Master Is Not the Right Choice
+## Where sejong-slide Is Not the Right Choice
 
 Being honest about limitations:
 
@@ -81,4 +81,4 @@ Being honest about limitations:
 
 **If you want zero-setup, instant slides in a browser** — Gamma and Canva are excellent choices.
 
-**If you want native editability, predictable cost, local data, and no lock-in** — that's what PPT Master is built for.
+**If you want native editability, predictable cost, local data, and no lock-in** — that's what sejong-slide is built for.

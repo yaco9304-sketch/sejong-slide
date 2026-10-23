@@ -1,5 +1,5 @@
 /* ============================================================
-   PPT Master - SVG Editor  |  app.js
+   sejong-slide - SVG Editor  |  app.js
    Vanilla JS, IIFE pattern
    ============================================================ */
 (function () {
@@ -8,7 +8,7 @@
     // ---- i18n -------------------------------------------------------
     var MESSAGES = {
         en: {
-            page_title: "PPT Master - Live Preview",
+            page_title: "sejong-slide - Live Preview",
             panel_slides: "Slides",
             panel_annotations: "Annotations",
             panel_edit_annotate: "Edit / Annotate",
@@ -83,7 +83,7 @@
             nav_empty: "— / —"
         },
         ja: {
-            page_title: "PPT Master - ライブプレビュー",
+            page_title: "sejong-slide - ライブプレビュー",
             panel_slides: "スライド",
             panel_annotations: "注釈",
             panel_edit_annotate: "編集 / 注釈",
@@ -158,7 +158,7 @@
             nav_empty: "— / —"
         },
         ko: {
-            page_title: "PPT Master - 라이브 프리뷰",
+            page_title: "sejong-slide - 라이브 프리뷰",
             panel_slides: "슬라이드",
             panel_annotations: "주석",
             panel_edit_annotate: "편집 / 주석",
@@ -233,7 +233,7 @@
             nav_empty: "— / —"
         },
         zh: {
-            page_title: "PPT Master - 实时预览",
+            page_title: "sejong-slide - 实时预览",
             panel_slides: "幻灯片",
             panel_annotations: "标注",
             panel_edit_annotate: "编辑 / 标注",
@@ -312,7 +312,7 @@
     // Product copy stays separate from the SVG object model and edit payloads.
     var WORKSPACE_MESSAGES = {
         ko: {
-            page_title: "PPT Master · 자료 미리보기", workspace_title: "자료 미리보기",
+            page_title: "sejong-slide · 자료 미리보기", workspace_title: "자료 미리보기",
             panel_edit_annotate: "수정하기", toggle_inspector: "수정 도구", close_inspector: "수정 도구 접기",
             canvas_hint: "글자나 그림을 눌러 수정할 수 있어요.", inspector_details: "직접 수정",
             label_selected_element: "선택한 항목", empty_selected_element: "고칠 글자나 그림을 슬라이드에서 골라주세요.",
@@ -860,7 +860,7 @@
                 // Empty-canvas guard: surface a clear error if the SVG parsed
                 // to nothing renderable (issue #115's silent-blank scenario).
                 var rootSvg = svgContent.querySelector("svg");
-                // viewBox is the PPT Master canvas authority. Normalize the
+                // viewBox is the sejong-slide canvas authority. Normalize the
                 // preview DOM from it so stale or missing root width/height
                 // cannot shrink the slide. View-layer only — the file on disk
                 // is never touched.

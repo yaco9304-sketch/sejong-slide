@@ -2,7 +2,7 @@
 
 ---
 
-> PPT Master is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap is here to align expectations: what's already shipped, what's under ongoing maintenance and evolution, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
+> sejong-slide is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap is here to align expectations: what's already shipped, what's under ongoing maintenance and evolution, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
 >
 > **Where we are**: AI generates SVG from scratch → converts to DrawingML for natively editable PPTX. The core axis is **pixel-fidelity across four renderers** (PowerPoint / Keynote / LibreOffice / WPS) **+ real native shapes**. Every direction below serves that axis.
 
@@ -117,7 +117,7 @@ The directions below come up repeatedly and have been evaluated as **not on the 
 
 **Issues**: [#53](https://github.com/hugohe3/ppt-master/issues/53), [#118](https://github.com/hugohe3/ppt-master/issues/118)
 
-PPT Master's main route is "AI generates SVG from scratch → DrawingML", with the whole pipeline built around full control of every shape / text / layout. A structured PPTX can now become a reviewed reusable package in two explicit ways: `standard` / `fidelity` author a new SVG and Master/Layout system from visual evidence, while `mirror` restores the reachable supported source graph. Generic "open any PPTX and blindly refill every placeholder" remains a different product shape.
+sejong-slide's main route is "AI generates SVG from scratch → DrawingML", with the whole pipeline built around full control of every shape / text / layout. A structured PPTX can now become a reviewed reusable package in two explicit ways: `standard` / `fidelity` author a new SVG and Master/Layout system from visual evidence, while `mirror` restores the reachable supported source graph. Generic "open any PPTX and blindly refill every placeholder" remains a different product shape.
 
 **The basic need is actually simple**: if you just need "replace Excel data into fixed positions in a PPT template", have the AI write a few lines of `python-pptx`. You don't need this pipeline.
 

@@ -239,7 +239,7 @@ def main(argv: list[str] | None = None) -> int:
     animation_choices = ['none', *ANIMATIONS, 'auto', 'mixed', 'random']
 
     parser = argparse.ArgumentParser(
-        description='PPT Master - SVG to native DrawingML PPTX Tool',
+        description='sejong-slide - SVG to native DrawingML PPTX Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f'''
 Examples:
@@ -909,7 +909,7 @@ Recorded narration:
     )
 
     if verbose:
-        print("PPT Master - SVG to native DrawingML PPTX Tool")
+        print("sejong-slide - SVG to native DrawingML PPTX Tool")
         print("=" * 50)
         print(f"  Project path: {project_path}")
         print(f"  SVG directory: {native_source_dir}")

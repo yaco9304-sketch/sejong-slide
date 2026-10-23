@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Template Preview PPTX Exporter
+sejong-slide - Template Preview PPTX Exporter
 
 Export every SVG prototype in a template workspace as one structured review deck.
 
@@ -219,7 +219,7 @@ def main(argv: list[str] | None = None) -> int:
         if not args.visual_only:
             text_style, title_px, body_px = _master_text_style(svg_files)
 
-        print("PPT Master - Template Preview PPTX Exporter")
+        print("sejong-slide - Template Preview PPTX Exporter")
         print(f"  Workspace: {workspace}")
         print(f"  Template source: {template_dir}")
         print(f"  SVG prototypes: {len(svg_files)}")

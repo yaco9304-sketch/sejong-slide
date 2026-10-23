@@ -1,11 +1,11 @@
-# Slide Master — 문서를 넣으면, PowerPoint에서 진짜 편집되는 PPT가 나옵니다
+# sejong-slide — 초등 수업과 교사 연수·안내를 위한 편집 가능한 PPT
 
 [![Output](https://img.shields.io/badge/output-native%20PPTX%20(DrawingML)-217346)](#faq)
 [![Font](https://img.shields.io/badge/font-Pretendard-0b1f3a)](#한글-폰트--pretendard-고정)
 [![Canvas](https://img.shields.io/badge/canvas-16%3A9%20기본%20%C2%B7%20세로형%C2%B7SNS%20포맷%20지원-4633E3)](.claude/skills/ppt-master/references/canvas-formats.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> 이 저장소는 [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)(MIT)를 기반으로 한 **장피엠 커스터마이즈 워크스페이스**입니다. 한국어 덱 제작에 맞춰 작업 절차 커스터마이징, 완료 PPTX 검증 워크플로우) 등이 조정·추가되어 있습니다. 원 프로젝트의 라이선스와 저작권 고지는 그대로 유지합니다.
+> 이 저장소는 [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)(MIT)와 [byungjunjang/slide-master](https://github.com/byungjunjang/slide-master)를 기반으로 한 **교육 자료용 커스터마이즈 워크스페이스**입니다. 초등 수업과 교사 연수·안내에 맞춰 제작 전 확인 화면, 실시간 프리뷰, 완료 PPTX 검증 절차를 조정했습니다. 원 프로젝트의 라이선스와 저작권 고지를 유지합니다.
 
 ---
 
@@ -18,7 +18,7 @@
 
 사용 예:
 
-> "projects/에 넣어둔 3분기 보고서 PDF로 임원 보고용 PPT 만들어줘"
+> "초등학교 6학년 과학 물질의 연소 단원 수업용 PPT 만들어줘"
 
 ↓ (방향/디자인 확인 후 자동 진행)
 
@@ -57,7 +57,7 @@ projects/<프로젝트>/svg_final/                        ← 브라우저로 �
 
 | 단계 | 내가 하는 일 |
 |---|---|
-| 전략 확인 | 브라우저에 열리는 확인 페이지에서 3단계(방향 → 디자인 시스템 → 이미지/실행)로 캔버스·페이지 수·색·폰트·이미지 방식을 고릅니다. 색상 견본과 폰트 미리보기를 직접 보면서 선택. 첫 단계에서 내장 덱 템플릿(맥킨지·애플·네이버 스타일 등)을 카드로 골라 시작할 수도 있습니다 |
+| 제작 전 확인 | 큰 디자인 예시를 보며 초등 수업 / 교사 연수·안내, 대상, 분량을 정합니다. 세부 설정은 모달에서 양식·구성 → 글꼴·색상 → 그림 → 제작 방식 순서로 조정합니다 |
 | 생성 중 | 라이브 프리뷰로 슬라이드가 만들어지는 걸 실시간으로 보고, 고칠 부분은 화면에 클릭 주석으로 남기면 AI가 반영 |
 | 완료 후 | `exports/`의 PPTX를 열어 확인. 필요하면 채팅으로 "4페이지 차트를 막대로 바꿔줘"처럼 계속 다듬기 |
 
@@ -86,12 +86,12 @@ projects/<프로젝트>/svg_final/                        ← 브라우저로 �
 **3단계 — 저장소 받기 + 의존성 설치**
 
 ```bash
-git clone https://github.com/byungjunjang/slide-master.git
-cd slide-master
+git clone https://github.com/yaco9304-sketch/sejong-slide.git
+cd sejong-slide
 pip install -r requirements.txt
 ```
 
-받은 폴더를 에이전트에서 엽니다 — IDE형이면 File → Open Folder, CLI형이면 `cd slide-master` 후 실행.
+받은 폴더를 에이전트에서 엽니다 — IDE형이면 File → Open Folder, CLI형이면 `cd sejong-slide` 후 실행.
 
 **4단계 (선택) — AI 이미지 생성**
 
@@ -211,7 +211,7 @@ sources/회사표준템플릿.pptx 디자인 그대로 쓰고,
 | 📘 | [Getting Started](docs/getting-started.md) | 첫 덱 만들기 3단계, 템플릿·프리뷰·애니메이션·나레이션 사용법 |
 | 🪟 | [Windows Installation](docs/windows-installation.md) | Windows 단계별 설치 가이드 |
 | ❓ | [FAQ](docs/faq.md) | 모델 선택, 비용, 레이아웃 문제 해결 |
-| 🆚 | [Why PPT Master](docs/why-ppt-master.md) | Gamma·Copilot 등 다른 도구와의 비교 |
+| 🆚 | [Why sejong-slide](docs/why-ppt-master.md) | Gamma·Copilot 등 다른 도구와의 비교 |
 | 🏗️ | [Technical Design](docs/technical-design.md) | 아키텍처, 왜 SVG를 거치는가 |
 | 🎨 | [Templates Guide](docs/templates-guide.md) | 브랜드/레이아웃/덱 템플릿 만들고 쓰기 |
 | 🔊 | [Audio Narration](docs/audio-narration.md) | 음성 나레이션·자동 넘김 덱 만들기 |

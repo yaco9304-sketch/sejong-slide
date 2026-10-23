@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Preset Shape SVG Markup
+sejong-slide - Preset Shape SVG Markup
 
 Serialize evaluated DrawingML preset layers into one native carrier and one
 browser-visible SVG preview.
@@ -12,7 +12,7 @@ Examples:
     markup = serialize_preset_layers(layers, semantic_attrs, style_attrs)
 
 Dependencies:
-    None (only uses standard library and local PPT Master modules)
+    None (only uses standard library and local sejong-slide modules)
 """
 
 from __future__ import annotations

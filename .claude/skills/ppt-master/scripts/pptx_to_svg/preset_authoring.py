@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Authored Preset Shape Contract
+sejong-slide - Authored Preset Shape Contract
 
 Build and validate canonical SVG fragments for newly authored PowerPoint
 preset shapes.
@@ -12,7 +12,7 @@ Examples:
     fragment = render_preset_shape_fragment("rightArrow", (80, 120, 240, 96))
 
 Dependencies:
-    None (only uses standard library and local PPT Master modules)
+    None (only uses standard library and local sejong-slide modules)
 """
 
 from __future__ import annotations

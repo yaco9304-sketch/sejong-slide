@@ -13,7 +13,7 @@ Every script under `scripts/` starts with:
 ```python
 #!/usr/bin/env python3
 """
-PPT Master - Short Tool Name
+sejong-slide - Short Tool Name
 
 One-paragraph description of what this script does.
 

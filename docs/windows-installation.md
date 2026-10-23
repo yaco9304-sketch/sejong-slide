@@ -1,6 +1,6 @@
 # Windows Installation Guide
 
-This guide walks you through installing PPT Master on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
+This guide walks you through installing sejong-slide on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
 
 ---
 

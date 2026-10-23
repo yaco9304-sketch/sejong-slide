@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Runtime Contract Drift Check
+sejong-slide - Runtime Contract Drift Check
 
 Check active cross-host workflow invariants without running the presentation
 pipeline. This is a contributor diagnostic, not a runtime gate.
@@ -10,7 +10,7 @@ Usage:
 
 Examples:
     python3 scripts/check_runtime_contracts.py
-    python3 scripts/check_runtime_contracts.py --repo-root C:/work/slide-master
+    python3 scripts/check_runtime_contracts.py --repo-root C:/work/sejong-slide
 
 Dependencies:
     None (only uses standard library)
@@ -310,14 +310,14 @@ def check_contracts(repo_root: Path) -> list[str]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Check stable cross-host PPT Master runtime contracts.",
+        description="Check stable cross-host sejong-slide runtime contracts.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
         "--repo-root",
         type=Path,
         default=Path(__file__).resolve().parents[4],
-        help="slide-master repository root (default: inferred from this script)",
+        help="sejong-slide repository root (default: inferred from this script)",
     )
     return parser
 

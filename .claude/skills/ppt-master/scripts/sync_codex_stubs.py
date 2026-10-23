@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Codex Stub Sync
+sejong-slide - Codex Stub Sync
 
 Regenerates the Codex discovery stubs under .codex/skills/ from the canonical
 Claude skills tree. Each stub carries the canonical SKILL.md's name/description

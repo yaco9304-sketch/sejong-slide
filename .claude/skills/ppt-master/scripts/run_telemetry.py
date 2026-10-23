@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Run Telemetry
+sejong-slide - Run Telemetry
 
 Append bounded, fixed-schema lifecycle events to a project's run event log.
 Each event is one UTF-8 JSON line written with one O_APPEND write.

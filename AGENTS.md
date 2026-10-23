@@ -1,4 +1,4 @@
-# AGENTS.md — Codex execution rules for slide-master
+# AGENTS.md — Codex execution rules for sejong-slide
 
 This repo is **dual-host**: Claude Code and Codex. [`CLAUDE.md`](CLAUDE.md) owns
 standing repository conventions. Route selection belongs to

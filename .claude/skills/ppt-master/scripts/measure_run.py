@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Run Timing Report
+sejong-slide - Run Timing Report
 
 Report one explicit telemetry run, or show legacy artifact mtimes as a clearly
 non-comparable diagnostic when no run id is supplied.

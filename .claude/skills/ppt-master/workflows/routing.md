@@ -1,10 +1,10 @@
 ---
-description: Deterministic route selection rules for PPT Master requests
+description: Deterministic route selection rules for sejong-slide requests
 ---
 
 # Routing Rules
 
-Route selection authority for PPT Master. Load this dispatcher before any full
+Route selection authority for sejong-slide. Load this dispatcher before any full
 skill or standalone workflow.
 
 **Hard rule — first load**: Do not read the full main `SKILL.md`, the full

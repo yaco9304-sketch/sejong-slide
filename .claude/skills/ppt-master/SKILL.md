@@ -2,7 +2,7 @@
 name: ppt-master
 description: >
   Post-router owner for authoring or regenerating presentation visuals through
-  the PPT Master SVG pipeline: new decks from source material or a topic, PPTX
+  the sejong-slide SVG pipeline: new decks from source material or a topic, PPTX
   re-architecture, generation from an already-created reusable SVG-template
   workspace, and shared SVG steps only after a strict 1:1 beautify workflow
   explicitly hands off. Read
@@ -12,7 +12,7 @@ description: >
   workflow requests.
 ---
 
-# PPT Master Skill
+# sejong-slide Skill
 
 **Entry precondition — route first**: Before loading this full file,
 [`workflows/routing.md`](workflows/routing.md) has selected the main SVG family,
@@ -215,7 +215,7 @@ inputs or directory inputs, `-o` is an output directory. Backend converter detai
 > alongside bitmap images when the source format exposes them. After `import-sources`, these land in `images/`
 > together with `image_manifest.json` and are first-class assets in §VIII Image Resource List.
 >
-> **Do NOT convert EMF/WMF to PNG.** The PPT Master pipeline preserves them as external
+> **Do NOT convert EMF/WMF to PNG.** The sejong-slide pipeline preserves them as external
 > references (`finalize_svg.py` skips them) and `svg_to_pptx.py` embeds them as
 > PPTX-native media via `image/x-emf` / `image/x-wmf` MIME — PowerPoint renders them at full vector fidelity.
 > Converting via LibreOffice/Inkscape introduces CJK font substitution drift and

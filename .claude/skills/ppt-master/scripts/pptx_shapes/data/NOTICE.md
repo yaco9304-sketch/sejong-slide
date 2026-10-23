@@ -46,7 +46,7 @@ and their sets are identical.
 
 - The circular-arrow, left-circular-arrow, and left-right-circular-arrow
   definitions each contain `+- xH 0 dxB 0`. Apache POI evaluates the first
-  three operands and ignores the inert final zero. The PPT Master evaluator
+  three operands and ignores the inert final zero. The sejong-slide evaluator
   accepts only this trailing-zero compatibility form; other arity mismatches
   remain errors.
 - A small number of definitions rebind an intermediate guide name later in

@@ -1,4 +1,4 @@
-/* PPT Master - Strategist confirmation stage UI
+/* sejong-slide - Strategist confirmation stage UI
  * Finite/enumerable fields (canvas, mode, visual style, template adherence,
  * icons, image usage, AI source, formula policy, generation mode) list ALL options from
  * /static/catalogs.json with the AI's recommendation marked. Open/generative
@@ -11,7 +11,7 @@
     // ---- i18n ------------------------------------------------------------
     var MESSAGES = {
         en: {
-            page_title: "PPT Master - Confirm Design",
+            page_title: "sejong-slide - Confirm Design",
             topbar_hint: "Pick or type your choices, then click Confirm — the page closes and you return to the chat.",
             stage_anchors: "Stage 1 · Direction",
             stage_design: "Stage 2 · Design system",
@@ -126,7 +126,7 @@
             error_retry: "Error - retry"
         },
         ja: {
-            page_title: "PPT Master - デザイン確認",
+            page_title: "sejong-slide - デザイン確認",
             topbar_hint: "各項目を選択または入力して「確定」を押してください。ページが閉じたらチャットに戻ります。",
             stage_anchors: "ステージ 1 · 方向性",
             stage_design: "ステージ 2 · デザインシステム",
@@ -241,7 +241,7 @@
             error_retry: "エラー - 再試行"
         },
         ko: {
-            page_title: "PPT Master - 디자인 확인",
+            page_title: "sejong-slide - 디자인 확인",
             topbar_hint: "각 항목을 선택하거나 입력한 뒤 확인을 누르세요. 페이지가 닫히면 채팅으로 돌아가세요.",
             stage_anchors: "1단계 · 방향",
             stage_design: "2단계 · 디자인 시스템",

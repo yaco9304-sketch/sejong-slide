@@ -2,7 +2,7 @@
 name: ppt-master
 description: >
   Post-router owner for authoring or regenerating presentation visuals through
-  the PPT Master SVG pipeline: new decks from source material or a topic, PPTX
+  the sejong-slide SVG pipeline: new decks from source material or a topic, PPTX
   re-architecture, generation from an already-created reusable SVG-template
   workspace, and shared SVG steps only after a strict 1:1 beautify workflow
   explicitly hands off. Read

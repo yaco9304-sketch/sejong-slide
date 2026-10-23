@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Final Deck Verification Gate
+sejong-slide - Final Deck Verification Gate
 
 One-command verification for a finished deck, run after SKILL.md Step 7.
 Catches the failure modes that otherwise surface only when the user opens the

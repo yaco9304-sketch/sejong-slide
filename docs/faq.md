@@ -2,7 +2,7 @@
 
 ---
 
-## Q: What source formats does PPT Master accept?
+## Q: What source formats does sejong-slide accept?
 
 Almost anything: **PDF**, **DOCX**, **PPTX**, **EPUB**, **HTML**, **LaTeX**, **RST**, **URLs** (including WeChat articles), **Markdown**, or just plain text pasted into the conversation. The AI agent converts your source material to Markdown automatically before generating slides.
 
@@ -12,9 +12,9 @@ Yes. Tell the AI your topic or scenario (e.g. "make a PPT about Hayao Miyazaki",
 
 Quality depends on what's on the open web. If you already have specialized material (papers, internal docs), giving those files to the AI directly produces better results than web research alone.
 
-## Q: Can PPT Master produce formats other than PowerPoint?
+## Q: Can sejong-slide produce formats other than PowerPoint?
 
-Yes. Besides the standard **16:9** and **4:3** presentation formats, PPT Master supports social media and marketing formats out of the box:
+Yes. Besides the standard **16:9** and **4:3** presentation formats, sejong-slide supports social media and marketing formats out of the box:
 
 | Format | Use Case |
 |--------|----------|
@@ -26,13 +26,13 @@ Yes. Besides the standard **16:9** and **4:3** presentation formats, PPT Master 
 
 Just specify the format when starting a project (e.g., `--format xhs`). The output is still a `.pptx` file containing native shapes.
 
-## Q: What AI tools work with PPT Master?
+## Q: What AI tools work with sejong-slide?
 
-PPT Master works with any AI coding agent that can read files and run shell commands — **Claude Code** (CLI / VS Code / JetBrains / Web), **VS Code Copilot**, **Codex**, and others. See the cost comparison below for pricing differences.
+sejong-slide works with any AI coding agent that can read files and run shell commands — **Claude Code** (CLI / VS Code / JetBrains / Web), **VS Code Copilot**, **Codex**, and others. See the cost comparison below for pricing differences.
 
 ## Q: I downloaded an old version. How do I update to the latest?
 
-It depends on how you installed PPT Master:
+It depends on how you installed sejong-slide:
 
 | Install method | Update method |
 |---|---|
@@ -61,11 +61,11 @@ Either way, run `pip install -r requirements.txt` from the installed location so
 
 ## Q: Can I use AI-generated images in my presentation?
 
-Yes. PPT Master includes a built-in image generation script that supports multiple providers (Gemini, OpenAI, FLUX, Qwen, Zhipu, etc.). During the Strategist phase, if you choose "AI generation" for the image approach, the pipeline will automatically generate images based on your content. You can also provide your own images — just place them in the project's `images/` folder.
+Yes. sejong-slide includes a built-in image generation script that supports multiple providers (Gemini, OpenAI, FLUX, Qwen, Zhipu, etc.). During the Strategist phase, if you choose "AI generation" for the image approach, the pipeline will automatically generate images based on your content. You can also provide your own images — just place them in the project's `images/` folder.
 
 ## Q: I don't have an image-generation API key — can I still get images?
 
-Yes — pick "Web-sourced" in the Strategist's Image Usage step. PPT Master ships a zero-config `image_search.py` that searches openly-licensed images across Openverse and Wikimedia Commons (no API key needed). Zero-config search is a fallback: it works immediately, but quality can be uneven because many results are ordinary user uploads.
+Yes — pick "Web-sourced" in the Strategist's Image Usage step. sejong-slide ships a zero-config `image_search.py` that searches openly-licensed images across Openverse and Wikimedia Commons (no API key needed). Zero-config search is a fallback: it works immediately, but quality can be uneven because many results are ordinary user uploads.
 
 For better contemporary stock photography, set `PEXELS_API_KEY` and/or `PIXABAY_API_KEY` in `.env` (both are free). The search will include Pexels / Pixabay automatically, which usually improves people, workplace, lifestyle, product, and illustration images. You can mix paths in one deck (e.g. AI for hero illustrations, web for team photos). If a selected image requires attribution, Executor adds a small inline credit on the affected slide.
 
@@ -73,7 +73,7 @@ Be clear on what this buys you: **web search only finds *a* relevant, downloadab
 
 ## Q: Can I edit the generated presentations?
 
-Yes. The only PPTX export route in the SVG pipeline is PPT Master's own `svg_output/` → DrawingML conversion. It saves a timestamped native PowerPoint deck to `exports/`, with text, graphics, and colors directly editable as PowerPoint objects. A copy of `svg_output/` (the Executor's raw SVG source) is always written to `backup/<timestamp>/svg_output/` so you can rebuild via `svg_to_pptx` without re-running the LLM; run `finalize_svg` first only when you also need self-contained SVG previews.
+Yes. The only PPTX export route in the SVG pipeline is sejong-slide's own `svg_output/` → DrawingML conversion. It saves a timestamped native PowerPoint deck to `exports/`, with text, graphics, and colors directly editable as PowerPoint objects. A copy of `svg_output/` (the Executor's raw SVG source) is always written to `backup/<timestamp>/svg_output/` so you can rebuild via `svg_to_pptx` without re-running the LLM; run `finalize_svg` first only when you also need self-contained SVG previews.
 
 `finalize_svg.py` is an on-demand Step 7 operation because native PPTX export reads `svg_output/` directly. Run it when you need self-contained files in `svg_final/` for visual inspection or manual insertion into another deck as SVG pictures. PowerPoint's manual **Convert to Shape** command is not a supported round-trip path; use the generated native PPTX when you need editable shapes.
 
@@ -95,7 +95,7 @@ When you're chatting with the AI, you can also just ask for strict line fidelity
 
 ## Q: Why are font sizes in px, not pt? Do they change on export?
 
-PPT Master works in **unitless px end-to-end** — the confirm page, `spec_lock.md`, and the SVG all carry px; there is no pt layer. The SVG canvas is literally 1280×720 px, so px is the real layout / execution unit, and keeping a single unit avoids the size drift you get when a value is "confirmed as 20pt" but written into the SVG as a different number.
+sejong-slide works in **unitless px end-to-end** — the confirm page, `spec_lock.md`, and the SVG all carry px; there is no pt layer. The SVG canvas is literally 1280×720 px, so px is the real layout / execution unit, and keeping a single unit avoids the size drift you get when a value is "confirmed as 20pt" but written into the SVG as a different number.
 
 PowerPoint displays pt, so the **export** converts px → pt automatically (`pt = px × 0.75`, kept to one decimal). For example a `24px` body becomes `18pt`, a `42px` title becomes `31.5pt`. So a non-integer like `13.5pt` or `31.5pt` in PowerPoint is **expected and intentional**, not a bug — the size is whatever the px works out to, no longer forced onto whole or half-point values.
 
@@ -109,7 +109,7 @@ The body baseline is a fixed value per **delivery purpose** (not a range):
 
 Title, subtitle, footnote and the other roles derive from the body by ratio and snap to clean even px. You can override any role's px value on the confirm page.
 
-## Q: How does PPT Master decide a deck's style?
+## Q: How does sejong-slide decide a deck's style?
 
 Two independent choices, locked at confirmation `d`:
 
@@ -118,13 +118,13 @@ Two independent choices, locked at confirmation `d`:
 
 Any mode pairs with any visual style.
 
-## Q: Is PPT Master expensive to use?
+## Q: Is sejong-slide expensive to use?
 
-PPT Master itself is free and open source. The only cost is your own AI model usage.
+sejong-slide itself is free and open source. The only cost is your own AI model usage.
 
-AI tools across the industry are shifting to usage-based billing — you pay for what you actually consume. PPT Master works with this model naturally: there's no separate PPT subscription, no proprietary credits, no per-seat fee for a presentation platform on top of what you're already paying for AI.
+AI tools across the industry are shifting to usage-based billing — you pay for what you actually consume. sejong-slide works with this model naturally: there's no separate PPT subscription, no proprietary credits, no per-seat fee for a presentation platform on top of what you're already paying for AI.
 
-For comparison, Gamma subscriptions run $8–20/month, Beautiful.ai $12–45/month — regardless of how much you actually use them. PPT Master adds zero cost on top of your existing AI spend.
+For comparison, Gamma subscriptions run $8–20/month, Beautiful.ai $12–45/month — regardless of how much you actually use them. sejong-slide adds zero cost on top of your existing AI spend.
 
 ## Q: Are the charts in the generated PPTX editable?
 
@@ -144,7 +144,7 @@ python3 .claude/skills/ppt-master/scripts/svg_to_pptx.py <project> --animation f
 python3 .claude/skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # presenter-paced reveals
 ```
 
-`on-click` is for live presentations. Narrated/video export via `--recorded-narration` rejects it because PPT Master writes page timings, not object-level click timings; use `after-previous` or `with-previous` for narrated decks.
+`on-click` is for live presentations. Narrated/video export via `--recorded-narration` rejects it because sejong-slide writes page timings, not object-level click timings; use `after-previous` or `with-previous` for narrated decks.
 
 Full effect list, anchor logic (top-level `<g id="...">`), fallback behavior, and limitations: see [Animations & Transitions](../.claude/skills/ppt-master/references/animations.md).
 
@@ -156,16 +156,16 @@ Full effect list, anchor logic (top-level `<g id="...">`), fallback behavior, an
 
 Other models (Gemini, GLM, MiniMax, etc.) vary in quality. In general, models with stronger frontend/visual capabilities produce better results.
 
-## Q: Someone said PPT Master is "just a toy" — is that fair?
+## Q: Someone said sejong-slide is "just a toy" — is that fair?
 
-No. PPT Master is a **harness**, not a complete agent — `harness + model = agent`, and the output ceiling is set entirely by the model, not the harness. Evaluating PPT Master with a weak or small-context model is like test-driving a sports car in first gear and concluding it's slow.
+No. sejong-slide is a **harness**, not a complete agent — `harness + model = agent`, and the output ceiling is set entirely by the model, not the harness. Evaluating sejong-slide with a weak or small-context model is like test-driving a sports car in first gear and concluding it's slow.
 
 **The full-power combination:**
 
 - **Claude with a large context window** (ideally ~1M tokens): a large context window lets the Executor see every previously generated page in the same session, maintaining visual consistency across the entire deck without splitting runs. Smaller windows force split-mode execution, which introduces visible style drift between phases.
 - **AI image generation with `gpt-image-2`** (or similar): placeholder-grade stock images are the single biggest reason decks look generic. Replacing them with on-brand AI-generated illustrations changes the perceived quality immediately.
 
-If the results you've seen look mediocre, check your setup before concluding anything about the tool: What model? What context size? Was image generation enabled? PPT Master + Claude Opus at 1M context + `gpt-image-2` images is a genuinely different experience from PPT Master + a small open-source model with no image API configured.
+If the results you've seen look mediocre, check your setup before concluding anything about the tool: What model? What context size? Was image generation enabled? sejong-slide + Claude Opus at 1M context + `gpt-image-2` images is a genuinely different experience from sejong-slide + a small open-source model with no image API configured.
 
 > **No Claude access?** Project sponsor [PackyCode](https://www.packyapi.com/register?aff=ppt-master) provides pay-as-you-go access to Claude and other models — no subscription, no overseas card required. Use promo code **`ppt-master`** for 10% off.
 
@@ -173,7 +173,7 @@ One last thing: this is a free, solo-maintained open-source project. If it fits 
 
 ## Q: Text overflows or elements are misaligned — what can I do?
 
-This is almost always a model capability issue, not a bug in PPT Master. SVG layout is essentially manual absolute positioning — the model must calculate coordinates, font metrics, and container sizes correctly.
+This is almost always a model capability issue, not a bug in sejong-slide. SVG layout is essentially manual absolute positioning — the model must calculate coordinates, font metrics, and container sizes correctly.
 
 **Fixes to try**:
 1. Switch to **Claude** (Opus or Sonnet) if you're using another model
@@ -234,11 +234,11 @@ The output stays 100% native-editable PowerPoint: the original design, layouts, 
 
 ## Q: How do I create a custom template?
 
-Want to turn a PPT you love into a reusable template for PPT Master? Here's how:
+Want to turn a PPT you love into a reusable template for sejong-slide? Here's how:
 
 **Step 1 — Prepare Reference Material**
 
-The recommended input is the original `.pptx`. PPT Master extracts theme identity, declared Master/Layout topology, placeholder metadata, native-shape evidence, and reusable assets. `standard` and `fidelity` use the source as visual reference and author a new SVG roster plus a new Master/Layout/slot system; they neither preserve nor distill source topology. `mirror` instead restores source slide order, Master/Layout identities and parentage, placeholder facts, and supported visuals without semantic synthesis. Fixed Master/Layout group wrappers are mechanically expanded into direct atoms because structural layers cannot be `<g>`.
+The recommended input is the original `.pptx`. sejong-slide extracts theme identity, declared Master/Layout topology, placeholder metadata, native-shape evidence, and reusable assets. `standard` and `fidelity` use the source as visual reference and author a new SVG roster plus a new Master/Layout/slot system; they neither preserve nor distill source topology. `mirror` instead restores source slide order, Master/Layout identities and parentage, placeholder facts, and supported visuals without semantic synthesis. Fixed Master/Layout group wrappers are mechanically expanded into direct atoms because structural layers cannot be `<g>`.
 
 Large imported SVGs may contain native-shape metadata, hidden carriers, and preview fingerprints. That lossless representation stays in the temporary analysis workspace, while the model reads a lightweight inspection projection. The projection is never an export source. `standard` / `fidelity` use compact canonical metadata. Mirror materializes from the lossless source, reuses only metadata already supported by the converter on unchanged Slide-local/slot objects, and keeps an SVG fallback for unsupported or edited objects.
 
@@ -246,7 +246,7 @@ If no source PPTX exists, screenshots of the key page types still work — cover
 
 **Step 2 — Let AI Create the Template**
 
-Use an AI coding agent (Claude Code, Codex, etc.) and ask it to use the **PPT Master `/create-template` workflow** to convert your reference material into a template. The more context you give, the better the result — for example:
+Use an AI coding agent (Claude Code, Codex, etc.) and ask it to use the **sejong-slide `/create-template` workflow** to convert your reference material into a template. The more context you give, the better the result — for example:
 
 - Template name and intended use case (e.g., government reports, premium consulting)
 - Desired tone and color palette (e.g., "modern and restrained, dark blue primary")

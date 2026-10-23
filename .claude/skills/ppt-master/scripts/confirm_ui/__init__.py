@@ -1,1 +1,1 @@
-"""PPT Master - interactive Strategist confirmation stage UI (Step 4)."""
+"""sejong-slide - interactive Strategist confirmation stage UI (Step 4)."""

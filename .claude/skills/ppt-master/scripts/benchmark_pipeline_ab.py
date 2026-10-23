@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Pipeline A/B Benchmark
+sejong-slide - Pipeline A/B Benchmark
 
 Run deterministic paired subprocess benchmarks from a strict JSON plan. The
 harness requires clean committed arms, verifies source/fixture identity around
@@ -17,7 +17,7 @@ Examples:
         --output artifacts/pipeline_ab.json --pairs 10
 
 Dependencies:
-    PPT Master local helpers plus the Python standard library
+    sejong-slide local helpers plus the Python standard library
 """
 
 from __future__ import annotations

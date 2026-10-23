@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - SVG Quality Check Tool
+sejong-slide - SVG Quality Check Tool
 
 Checks whether SVG files comply with project technical specifications.
 
@@ -4441,7 +4441,7 @@ class SVGQualityChecker:
     def export_report(self, output_file: str = 'svg_quality_report.txt'):
         """Export check report"""
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write("PPT Master SVG Quality Check Report\n")
+            f.write("sejong-slide SVG Quality Check Report\n")
             f.write("=" * 80 + "\n\n")
 
             for result in self.results:
@@ -4509,7 +4509,7 @@ def _filter_svg_pages(svg_files: List[Path], pages_spec: str) -> List[Path]:
 
 def print_usage() -> None:
     """Print CLI usage information."""
-    print("PPT Master - SVG Quality Check Tool\n")
+    print("sejong-slide - SVG Quality Check Tool\n")
     print("Usage:")
     print("  python3 scripts/svg_quality_checker.py <svg_file>")
     print("  python3 scripts/svg_quality_checker.py <directory>")

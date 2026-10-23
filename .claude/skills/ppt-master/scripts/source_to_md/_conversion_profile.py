@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Markdown Conversion Profile Helpers
+sejong-slide - Markdown Conversion Profile Helpers
 
 Write lightweight sidecar metadata for source_to_md conversion outputs.
 

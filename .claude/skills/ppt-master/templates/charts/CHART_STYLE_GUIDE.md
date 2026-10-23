@@ -395,7 +395,7 @@ echo "Small fonts:" && grep -c 'font-size="[0-9]"' ".claude/skills/ppt-master/te
 
 ## 11. Card Container Patterns
 
-Container cards are the most-reused visual unit in PPT Master (KPI cards, section cards, info cards). The patterns below are verified, PPTX-roundtrip-compatible reference implementations — new templates reuse them first rather than inventing equivalent-but-dirty alternatives.
+Container cards are the most-reused visual unit in sejong-slide (KPI cards, section cards, info cards). The patterns below are verified, PPTX-roundtrip-compatible reference implementations — new templates reuse them first rather than inventing equivalent-but-dirty alternatives.
 
 ### 11.1 Half-Rounded Section Tab
 

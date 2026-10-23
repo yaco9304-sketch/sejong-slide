@@ -1,13 +1,13 @@
 # Minimal Semantic SVG Markers
 
-PPT Master uses rendering-neutral compiler hints only where ordinary SVG cannot express PowerPoint Master, Layout, placeholder, native-object, or package behavior.
+sejong-slide uses rendering-neutral compiler hints only where ordinary SVG cannot express PowerPoint Master, Layout, placeholder, native-object, or package behavior.
 
 ## 1. Boundary
 
 | Marker | Placement | Purpose |
 |---|---|---|
 | `data-pptx-page-role` | Root `<svg>` | Name the page's role on a flat route so export can pick its baseline Layout name. |
-| `data-pptx-master` / `data-pptx-master-name` | Root `<svg>` | Bind the page to one named PowerPoint Slide Master. |
+| `data-pptx-master` / `data-pptx-master-name` | Root `<svg>` | Bind the page to one named PowerPoint sejong-slide. |
 | `data-pptx-layout` / `data-pptx-layout-name` | Root `<svg>` | Bind the page to one named Layout under that Master. |
 | `data-pptx-layer="master"` | Direct atomic child of root | Promote one fixed visual object to the named Master. |
 | `data-pptx-layer="layout"` | Direct atomic child of root | Promote one fixed visual object to the named Layout. |

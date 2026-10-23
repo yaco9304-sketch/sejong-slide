@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Planning Artifact Validator
+sejong-slide - Planning Artifact Validator
 
 Machine gate for the Strategist's planning artifacts. Run right after
 `design_spec.md` + `spec_lock.md` are written (SKILL.md Step 4) and fix every

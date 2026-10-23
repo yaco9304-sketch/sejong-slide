@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master - Repository Updater
+"""sejong-slide - Repository Updater
 
 Pull the latest Git checkout and sync Python dependencies when requirements
 change.
@@ -39,7 +39,7 @@ REQUIREMENTS_FILE = REPO_ROOT / "requirements.txt"
 
 
 def non_git_checkout_message() -> str:
-    return f"""This copy of PPT Master is not a Git checkout, so it cannot be updated automatically.
+    return f"""This copy of sejong-slide is not a Git checkout, so it cannot be updated automatically.
 
 Repository path:
   {REPO_ROOT}
@@ -51,7 +51,7 @@ If you installed with Download ZIP:
   4. Run: pip install -r requirements.txt
 
 If you want one-command updates next time, install with Git clone:
-  git clone https://github.com/hugohe3/ppt-master.git
+  git clone https://github.com/yaco9304-sketch/sejong-slide.git
 
 If you installed through a skill marketplace, update or reinstall through the
 same marketplace / skills tool."""
