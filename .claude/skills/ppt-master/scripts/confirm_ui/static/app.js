@@ -472,6 +472,73 @@
         }
     };
 
+    var EDUCATION_COPY = {
+        ko: {
+            page_title: "자료의 방향", new_material: "새 자료", topbar_hint: "필요한 것만 정하고 제작을 시작하세요.",
+            btn_confirm: "이대로 제작하기", confirmed_title: "제작 방향을 저장했어요.",
+            confirmed_hint: "대화로 돌아가면 제작을 이어갈 수 있어요.",
+            edu_purpose: "어떤 자료인가요?", edu_lesson: "초등 수업", edu_lesson_note: "학생이 보고, 생각하고, 활동하는 자료",
+            edu_teacher: "교사 연수·안내", edu_teacher_note: "핵심 내용과 현장 적용이 명확한 자료",
+            edu_audience: "대상", edu_pages: "분량", edu_pages_unit: "장", edu_request: "내용 구성 요청",
+            edu_request_hint: "예: 관찰 활동과 확인 퀴즈를 넣어주세요.",
+            edu_preview: "우리 자료에 맞는 분위기", edu_preview_note: "디자인 예시입니다. 실제 내용과 배치는 제작 중에 다듬어요.",
+            edu_style: "분위기", edu_color: "색상", edu_advanced: "세부 설정", edu_advanced_note: "양식 · 글꼴 · 그림 · 제작 방식",
+            edu_custom: "선택한 설정", edu_steps: "개념,관찰,활동", edu_teacher_steps: "핵심,사례,현장 적용",
+            edu_material: "수업 자료", edu_teacher_material: "교사 연수·안내 자료", edu_template: "선택한 양식",
+            edu_projected: "화면으로 함께 보기", edu_readable: "읽기 쉬운 큰 글씨",
+            edu_settings_hint: "필요한 항목만 바꾸고, 다음 단계로 이동하세요.",
+            edu_step_template: "양식·구성", edu_step_type: "글꼴·색상", edu_step_images: "그림", edu_step_execution: "제작 방식",
+            edu_previous: "이전", edu_next: "다음", edu_done: "설정 완료", edu_close: "닫기",
+            edu_live_changes: "변경한 설정은 바로 반영됩니다."
+        },
+        en: {
+            page_title: "Plan your material", new_material: "New material", topbar_hint: "Set the essentials, then start creating.",
+            btn_confirm: "Create with these choices", confirmed_title: "Your direction is saved.", confirmed_hint: "Return to the chat to continue creating.",
+            edu_purpose: "What are you creating?", edu_lesson: "Elementary lesson", edu_lesson_note: "Observe, think, and take part",
+            edu_teacher: "Teacher training / guidance", edu_teacher_note: "Clear ideas and practical application",
+            edu_audience: "Audience", edu_pages: "Length", edu_pages_unit: "slides", edu_request: "Content preferences",
+            edu_request_hint: "For example: include an observation activity and a quiz.",
+            edu_preview: "Find the right feel", edu_preview_note: "A design example. Final content and layout are developed during creation.",
+            edu_style: "Style", edu_color: "Colors", edu_advanced: "Detailed settings", edu_advanced_note: "Template · type · images · execution",
+            edu_custom: "Your selection", edu_steps: "Concept,Observation,Activity", edu_teacher_steps: "Key idea,Example,Application",
+            edu_material: "Lesson material", edu_teacher_material: "Teacher training / guidance", edu_template: "Selected template",
+            edu_projected: "Presented on screen", edu_readable: "Large, readable text",
+            edu_settings_hint: "Adjust what you need, then continue to the next step.",
+            edu_step_template: "Template & structure", edu_step_type: "Type & colors", edu_step_images: "Images", edu_step_execution: "Creation",
+            edu_previous: "Previous", edu_next: "Next", edu_done: "Done", edu_close: "Close",
+            edu_live_changes: "Changes take effect immediately."
+        },
+        ja: {
+            new_material: "新しい資料", edu_purpose: "どの資料を作りますか？", edu_lesson: "小学校の授業", edu_lesson_note: "観察し、考え、参加する資料",
+            edu_teacher: "教員研修・案内", edu_teacher_note: "要点と現場での活用が明確な資料", edu_audience: "対象", edu_pages: "分量", edu_pages_unit: "枚",
+            edu_request: "構成の希望", edu_request_hint: "例：観察活動と確認クイズを入れてください。", edu_preview: "資料に合う雰囲気",
+            edu_preview_note: "デザイン例です。内容と配置は制作時に調整します。", edu_style: "雰囲気", edu_color: "配色",
+            edu_advanced: "詳細設定", edu_advanced_note: "テンプレート・文字・画像・制作方法", edu_custom: "選択した設定",
+            edu_steps: "概念,観察,活動", edu_teacher_steps: "要点,事例,現場での活用", edu_material: "授業資料", edu_teacher_material: "教員研修・案内資料",
+            edu_template: "選択したテンプレート", edu_projected: "画面で一緒に見る", edu_readable: "読みやすい大きな文字",
+            edu_settings_hint: "必要な項目を調整して、次へ進んでください。",
+            edu_step_template: "形式・構成", edu_step_type: "文字・配色", edu_step_images: "画像", edu_step_execution: "制作方法",
+            edu_previous: "戻る", edu_next: "次へ", edu_done: "設定完了", edu_close: "閉じる",
+            edu_live_changes: "変更はすぐに反映されます。"
+        },
+        zh: {
+            new_material: "新建资料", edu_purpose: "制作哪种资料？", edu_lesson: "小学课堂", edu_lesson_note: "观察、思考和参与活动的资料",
+            edu_teacher: "教师培训·指南", edu_teacher_note: "重点明确，便于实际应用", edu_audience: "受众", edu_pages: "篇幅", edu_pages_unit: "页",
+            edu_request: "内容要求", edu_request_hint: "例如：加入观察活动和巩固测验。", edu_preview: "适合资料的视觉风格",
+            edu_preview_note: "此处为设计示例，内容和布局将在制作时完善。", edu_style: "风格", edu_color: "配色",
+            edu_advanced: "详细设置", edu_advanced_note: "模板·字体·图片·制作方式", edu_custom: "当前选择",
+            edu_steps: "概念,观察,活动", edu_teacher_steps: "要点,案例,实际应用", edu_material: "课堂资料", edu_teacher_material: "教师培训·指南资料",
+            edu_template: "所选模板", edu_projected: "共同观看屏幕", edu_readable: "清晰的大字号",
+            edu_settings_hint: "调整所需项目，然后进入下一步。",
+            edu_step_template: "模板与结构", edu_step_type: "字体与配色", edu_step_images: "图片", edu_step_execution: "制作方式",
+            edu_previous: "上一步", edu_next: "下一步", edu_done: "完成设置", edu_close: "关闭",
+            edu_live_changes: "更改会立即生效。"
+        }
+    };
+    Object.keys(EDUCATION_COPY).forEach(function (lang) {
+        Object.assign(MESSAGES[lang], EDUCATION_COPY[lang]);
+    });
+
     var LANG = (function () {
         try {
             var stored = window.localStorage.getItem("ppt_lang");
@@ -1634,7 +1701,12 @@
             customInput.value = STATE.color.custom || "";
             selectCustomColor();
         } else if (selIdx >= 0) {
-            selectCard(selIdx);
+            // Mounting / translating the controls must preserve edited HEX roles.
+            selectedIdx = selIdx;
+            grid.querySelectorAll(".color-card").forEach(function (card, i) {
+                card.classList.toggle("selected", i === selIdx);
+            });
+            applyHexInputs(STATE.color.palette || {});
         } else {
             applyHexInputs((STATE.color && STATE.color.palette) || {});
         }
@@ -2352,10 +2424,358 @@
         return t("page_title");
     }
 
+    // A focused single-pass surface; staged sessions keep their original fields.
+    var educationAdvancedOpen = false;
+    var educationSettingsStep = 0;
+    var educationSettingsDialog = null;
+    function renderEducationConfirmation(host, previewHost) {
+        if (!STATE.education_purpose) {
+            var requested = REC.recommend && REC.recommend.education_purpose;
+            STATE.education_purpose = requested === "teacher" || requested === "lesson" ? requested :
+                (/교사|연수|안내|teacher|training|教員|教师|研修/i.test(STATE.audience) ? "teacher" : "lesson");
+        }
+        var purposeButtons = [];
+        var paletteButtons = [];
+        var styleButtons = [];
+        var preview = el("div", "edu-preview");
+        preview.appendChild(el("div", "edu-eyebrow", t("edu_preview")));
+        var slide = el("div", "edu-slide");
+        var kicker = el("div", "edu-slide-kicker");
+        var title = el("div", "edu-slide-title");
+        var body = el("div", "edu-slide-body");
+        var diagram = el("div", "edu-slide-diagram");
+        var slideFooter = el("div", "edu-slide-footer");
+        slide.appendChild(kicker);
+        slide.appendChild(title);
+        slide.appendChild(body);
+        slide.appendChild(diagram);
+        slide.appendChild(slideFooter);
+        preview.appendChild(slide);
+        preview.appendChild(el("p", "edu-preview-note", t("edu_preview_note")));
+        if (previewHost) previewHost.appendChild(preview);
+
+        function paint() {
+            var teacher = STATE.education_purpose === "teacher";
+            var typography = STATE.typography || {};
+            var heading = typography.heading || {};
+            var text = typography.body || {};
+            var palette = (STATE.color && STATE.color.palette) || {};
+            var defaults = { background: "#FFFCF5", primary: "#176B60", accent: "#EC713C", secondary_bg: "#EAF3EE", body_text: "#203932" };
+            Object.keys(defaults).forEach(function (role) {
+                slide.style.setProperty("--slide-" + role, normHex(palette[role]) || defaults[role]);
+            });
+            slide.dataset.style = STATE.visual_style || "";
+            title.style.fontFamily = previewFontStack(heading.cjk, heading.css);
+            body.style.fontFamily = previewFontStack(text.cjk, text.css);
+            var sizes = typography.sizes || {};
+            title.style.fontSize = (4.5 * (parseFloat(sizes.title) || 52) / 52) + "cqw";
+            body.style.fontSize = (1.95 * (parseFloat(typography.body_size) || 32) / 32) + "cqw";
+            kicker.textContent = teacher ? t("edu_teacher_material") : t("edu_material");
+            title.textContent = heading.sample_cjk || heading.sample_latin || kicker.textContent;
+            body.textContent = text.sample_cjk || text.sample_latin || "";
+            var parts = body.textContent.split(/\s*[·•｜|]\s*/).filter(Boolean);
+            if (parts.length !== 3) parts = t(teacher ? "edu_teacher_steps" : "edu_steps").split(",");
+            diagram.innerHTML = "";
+            parts.forEach(function (part, i) {
+                var node = el("div", "edu-diagram-item");
+                node.appendChild(el("span", "edu-diagram-index", String(i + 1).padStart(2, "0")));
+                node.appendChild(el("span", "edu-diagram-label", part));
+                diagram.appendChild(node);
+            });
+            slideFooter.textContent = STATE.audience || kicker.textContent;
+            purposeButtons.forEach(function (button) { button.setAttribute("aria-pressed", String(button.dataset.purpose === STATE.education_purpose)); });
+            styleButtons.forEach(function (button) { button.setAttribute("aria-pressed", String(button.dataset.style === STATE.visual_style)); });
+            styleButtons.forEach(function (button) {
+                var thumb = button.querySelector(".edu-style-thumb");
+                thumb.innerHTML = "";
+                var example = slide.cloneNode(true);
+                example.dataset.style = button.dataset.style;
+                example.setAttribute("aria-hidden", "true");
+                thumb.appendChild(example);
+            });
+            paletteButtons.forEach(function (button, i) {
+                button.setAttribute("aria-pressed", String(JSON.stringify(normPalette(STATE.color)) === JSON.stringify(normPalette(REC.color.candidates[i]))));
+            });
+        }
+        refreshStylePreview = paint;
+        refreshDirectionPreview = paint;
+
+        var choices = el("div", "edu-design-choices");
+        choices.appendChild(el("div", "edu-label", t("edu_style")));
+        var styles = el("div", "edu-style-options");
+        var spectrum = (REC.visual_style_spectrum || []).slice();
+        if (!spectrum.length) spectrum = ["soft-rounded", "editorial", "sketch-notes"].map(function (id) { return { id: id }; });
+        if (!spectrum.some(function (entry) { return entry.id === STATE.visual_style; })) spectrum.unshift({ id: STATE.visual_style });
+        spectrum.forEach(function (entry) {
+            var button = el("button", "edu-style-choice");
+            button.type = "button";
+            button.dataset.style = entry.id;
+            var thumb = el("div", "edu-style-thumb");
+            button.appendChild(thumb);
+            var catalogEntry = findCatalogOption(CAT.visual_styles, entry.id);
+            button.appendChild(el("span", "edu-style-name", localized(entry, "tag") || (catalogEntry && optionLabel(catalogEntry)) || t("edu_custom")));
+            button.addEventListener("click", function () {
+                STATE.visual_style = entry.id;
+                var detail = advancedBody.querySelector(".edu-style-detail");
+                if (detail) {
+                    detail.innerHTML = "";
+                    renderStyle(detail);
+                }
+                paint();
+            });
+            styles.appendChild(button);
+            styleButtons.push(button);
+        });
+        choices.appendChild(styles);
+        var palettes = el("div", "edu-palettes");
+        palettes.appendChild(el("span", "edu-label", t("edu_color")));
+        ((REC.color && REC.color.candidates) || []).forEach(function (candidate) {
+            var button = el("button", "edu-palette-choice");
+            button.type = "button";
+            button.title = localized(candidate, "name");
+            button.setAttribute("aria-label", button.title || t("edu_color"));
+            var palette = normPalette(candidate);
+            ["primary", "accent", "background"].forEach(function (role) {
+                var swatch = el("span", "edu-palette-dot");
+                swatch.style.background = normHex(palette[role]) || "#ffffff";
+                button.appendChild(swatch);
+            });
+            button.addEventListener("click", function () {
+                STATE.color = { name: candidate.name || "", palette: Object.assign({}, palette) };
+                // Discard only the mounted color controls; the next expansion
+                // reflects this explicit palette pick without touching other fields.
+                if (advancedBody.querySelector(".edu-color-detail")) {
+                    var detail = advancedBody.querySelector(".edu-color-detail");
+                    detail.innerHTML = "";
+                    renderColor(detail);
+                }
+                paint();
+            });
+            palettes.appendChild(button);
+            paletteButtons.push(button);
+        });
+        choices.appendChild(palettes);
+        preview.appendChild(choices);
+
+        var purposes = el("fieldset", "edu-purpose-field");
+        purposes.appendChild(el("legend", "edu-label", t("edu_purpose")));
+        var audiences = {};
+        audiences[STATE.education_purpose] = STATE.audience;
+        ["lesson", "teacher"].forEach(function (value) {
+            var button = el("button", "edu-purpose-choice");
+            button.type = "button";
+            button.dataset.purpose = value;
+            button.appendChild(el("strong", "", t("edu_" + value)));
+            button.appendChild(el("span", "", t("edu_" + value + "_note")));
+            button.addEventListener("click", function () {
+                audiences[STATE.education_purpose] = STATE.audience;
+                STATE.education_purpose = value;
+                STATE.audience = audiences[value] || t("edu_" + value);
+                audience.value = STATE.audience;
+                paint();
+            });
+            purposes.appendChild(button);
+            purposeButtons.push(button);
+        });
+        host.appendChild(purposes);
+        function field(key, id, value) {
+            var label = el("label", "edu-field");
+            label.appendChild(el("span", "edu-label", t(key)));
+            var input = el("input", "text-input");
+            input.id = id;
+            input.type = "text";
+            input.value = value || "";
+            label.appendChild(input);
+            host.appendChild(label);
+            return input;
+        }
+        var audience = field("edu_audience", "edu-audience", STATE.audience);
+        audience.addEventListener("input", function () { STATE.audience = audience.value; paint(); });
+        var pages = field("edu_pages", "edu-pages", STATE.page_count);
+        pages.placeholder = t("placeholder_pages");
+        pages.addEventListener("input", function () { STATE.page_count = pages.value; });
+        pages.parentNode.classList.add("edu-pages-field");
+        pages.parentNode.appendChild(el("span", "edu-pages-unit", t("edu_pages_unit")));
+        var request = el("label", "edu-field");
+        request.appendChild(el("span", "edu-label", t("edu_request")));
+        var textarea = el("textarea", "text-input");
+        textarea.id = "edu-request";
+        textarea.rows = 3;
+        textarea.value = STATE.content_divergence || "";
+        textarea.placeholder = t("edu_request_hint");
+        textarea.addEventListener("input", function () { STATE.content_divergence = textarea.value; });
+        request.appendChild(textarea);
+        host.appendChild(request);
+        var advanced = el("button", "edu-advanced");
+        advanced.type = "button";
+        advanced.setAttribute("aria-haspopup", "dialog");
+        advanced.setAttribute("aria-controls", "edu-settings-dialog");
+        advanced.appendChild(el("span", "edu-label", t("edu_advanced")));
+        advanced.appendChild(el("small", "", t("edu_advanced_note")));
+        advanced.appendChild(el("span", "edu-advanced-arrow", "↗"));
+        host.appendChild(advanced);
+
+        var dialog = el("dialog", "edu-settings");
+        dialog.id = "edu-settings-dialog";
+        dialog.setAttribute("aria-labelledby", "edu-settings-title");
+        dialog.setAttribute("aria-describedby", "edu-settings-hint");
+        var header = el("header", "edu-settings-header");
+        var heading = el("div", "");
+        var modalTitle = el("h2", "", t("edu_advanced"));
+        modalTitle.id = "edu-settings-title";
+        heading.appendChild(modalTitle);
+        var hint = el("p", "", t("edu_settings_hint"));
+        hint.id = "edu-settings-hint";
+        heading.appendChild(hint);
+        header.appendChild(heading);
+        var close = el("button", "edu-settings-close", "×");
+        close.type = "button";
+        close.setAttribute("aria-label", t("edu_close"));
+        close.addEventListener("click", function () { dialog.close(); });
+        header.appendChild(close);
+        dialog.appendChild(header);
+        var nav = el("nav", "edu-settings-steps");
+        nav.setAttribute("aria-label", t("edu_advanced"));
+        dialog.appendChild(nav);
+        var advancedBody = el("div", "edu-settings-body");
+        dialog.appendChild(advancedBody);
+        var panels = [];
+        var stepButtons = [];
+        var mounted = [];
+        var renderers = [function (panel) {
+            renderTemplate(panel);
+            renderCanvas(panel);
+            var styleDetail = el("div", "edu-style-detail");
+            renderStyle(styleDetail);
+            panel.appendChild(styleDetail);
+            var delivery = section(0, "delivery_purpose");
+            enumField(delivery, CAT.delivery_purpose, recOrFirst("delivery_purpose", CAT.delivery_purpose),
+                function () { return STATE.delivery_purpose; }, function (v) { STATE.delivery_purpose = v; });
+            panel.appendChild(delivery);
+        }, function (panel) {
+            var colorDetail = el("div", "edu-color-detail");
+            renderColor(colorDetail);
+            panel.appendChild(colorDetail);
+            renderTypography(panel);
+            renderIcons(panel);
+        }, function (panel) {
+            renderImages(panel);
+        }, function (panel) {
+            renderMode(panel);
+            renderRefine(panel);
+        }];
+        ["template", "type", "images", "execution"].forEach(function (name, index) {
+            var button = el("button", "edu-settings-step");
+            button.type = "button";
+            button.appendChild(el("span", "edu-step-number", String(index + 1).padStart(2, "0")));
+            button.appendChild(el("span", "", t("edu_step_" + name)));
+            button.setAttribute("aria-controls", "edu-settings-panel-" + index);
+            button.addEventListener("click", function () { showStep(index, true); });
+            nav.appendChild(button);
+            stepButtons.push(button);
+            var panel = el("section", "edu-settings-panel");
+            panel.id = "edu-settings-panel-" + index;
+            panel.setAttribute("aria-label", t("edu_step_" + name));
+            panel.tabIndex = -1;
+            panel.hidden = true;
+            advancedBody.appendChild(panel);
+            panels.push(panel);
+        });
+        var footer = el("footer", "edu-settings-footer");
+        footer.appendChild(el("small", "edu-settings-note", t("edu_live_changes")));
+        var counter = el("span", "edu-settings-counter");
+        counter.setAttribute("aria-live", "polite");
+        footer.appendChild(counter);
+        var previous = el("button", "edu-settings-previous", t("edu_previous"));
+        previous.type = "button";
+        previous.addEventListener("click", function () { showStep(educationSettingsStep - 1, true); });
+        footer.appendChild(previous);
+        var next = el("button", "edu-settings-next", t("edu_next"));
+        next.type = "button";
+        next.addEventListener("click", function () {
+            if (educationSettingsStep === panels.length - 1) dialog.close();
+            else showStep(educationSettingsStep + 1, true);
+        });
+        footer.appendChild(next);
+        dialog.appendChild(footer);
+        function showStep(index, focusPanel) {
+            educationSettingsStep = Math.max(0, Math.min(panels.length - 1, index));
+            if (!mounted[educationSettingsStep]) {
+                mounted[educationSettingsStep] = true;
+                _secCounter = 0;
+                renderers[educationSettingsStep](panels[educationSettingsStep]);
+            }
+            panels.forEach(function (panel, i) { panel.hidden = i !== educationSettingsStep; });
+            stepButtons.forEach(function (button, i) {
+                if (i === educationSettingsStep) button.setAttribute("aria-current", "step");
+                else button.removeAttribute("aria-current");
+            });
+            counter.textContent = (educationSettingsStep + 1) + " / " + panels.length;
+            previous.disabled = educationSettingsStep === 0;
+            next.textContent = educationSettingsStep === panels.length - 1 ? t("edu_done") : t("edu_next");
+            advancedBody.scrollTop = 0;
+            if (focusPanel) panels[educationSettingsStep].focus({ preventScroll: true });
+        }
+        function openSettings() {
+            educationAdvancedOpen = true;
+            document.body.classList.add("education-settings-open");
+            showStep(educationSettingsStep, false);
+            dialog.showModal();
+            stepButtons[educationSettingsStep].focus();
+        }
+        dialog.addEventListener("close", function () {
+            if (educationSettingsDialog !== dialog) return;
+            educationAdvancedOpen = false;
+            document.body.classList.remove("education-settings-open");
+            paint();
+            advanced.focus({ preventScroll: true });
+        });
+        // Wrap the boundary explicitly so Tab does not jump into browser chrome.
+        // Native dialog supplies background inertness and Escape handling.
+        dialog.addEventListener("keydown", function (event) {
+            if (event.key !== "Tab") return;
+            var focusable = Array.prototype.filter.call(dialog.querySelectorAll(
+                "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), a[href], [tabindex]"
+            ), function (node) { return node.tabIndex >= 0 && node.getClientRects().length > 0; });
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+        dialog.addEventListener("click", function (event) {
+            if (event.target !== dialog) return;
+            var rect = dialog.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right ||
+                    event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        });
+        advanced.addEventListener("click", function () {
+            openSettings();
+        });
+        educationSettingsDialog = dialog;
+        document.body.appendChild(dialog);
+        if (educationAdvancedOpen) openSettings();
+        paint();
+    }
+
     function renderForStage(stage) {
+        if (educationSettingsDialog) {
+            var previousDialog = educationSettingsDialog;
+            educationSettingsDialog = null;
+            previousDialog.remove();
+        }
+        if (stage !== "all") {
+            educationAdvancedOpen = false;
+            document.body.classList.remove("education-settings-open");
+        }
         var host = document.getElementById("sections");
         host.innerHTML = "";
         _secCounter = 0;
+        document.body.classList.toggle("education-confirm", stage === "all");
         var heading = document.querySelector("#topbar .topbar-titles h1");
         if (heading) heading.textContent = stageTitle(stage);
         // Detach the previous preview's repaint closures before the sections
@@ -2392,21 +2812,7 @@
             renderMode(host);
             renderRefine(host);
         } else {
-            // Legacy single-pass: show every section on one page.
-            if (previewHost) renderStylePreview(previewHost);
-            renderTemplate(host);
-            renderCanvas(host);
-            renderAudience(host);
-            renderStyle(host);
-            renderPages(host);
-            var legacyStyleGroup = el("div", "style-group");
-            renderColor(legacyStyleGroup);
-            renderIcons(legacyStyleGroup);
-            renderTypography(legacyStyleGroup);
-            host.appendChild(legacyStyleGroup);
-            renderImages(host);
-            renderMode(host);
-            renderRefine(host);
+            renderEducationConfirmation(host, previewHost);
         }
         updateActionBar(stage);
     }

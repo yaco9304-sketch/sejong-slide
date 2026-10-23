@@ -309,6 +309,54 @@
         }
     };
 
+    // Product copy stays separate from the SVG object model and edit payloads.
+    var WORKSPACE_MESSAGES = {
+        ko: {
+            page_title: "PPT Master · 자료 미리보기", workspace_title: "자료 미리보기",
+            panel_edit_annotate: "수정하기", toggle_inspector: "수정 도구", close_inspector: "수정 도구 접기",
+            canvas_hint: "글자나 그림을 눌러 수정할 수 있어요.", inspector_details: "직접 수정",
+            label_selected_element: "선택한 항목", empty_selected_element: "고칠 글자나 그림을 슬라이드에서 골라주세요.",
+            label_edit_instruction: "어떻게 바꿀까요?", label_annotations_on_slide: "이 슬라이드의 수정 요청",
+            placeholder_annotation: "예: 글자를 조금 더 키워주세요.\n설명을 더 짧고 쉽게 바꿔주세요.",
+            btn_add_annotation: "수정 요청 추가", btn_exit_preview: "닫기", modal_submit: "적용",
+            empty_annotations: "추가한 수정 요청이 여기에 모여요.", pending_none: "저장할 변경 없음",
+            pending_summary: "편집 {edits}건 · 수정 요청 {annotations}개 페이지",
+            apply_hint: "수정 요청을 적용한 뒤, 대화에서 반영을 요청해주세요.",
+            label_direct_edit: "선택한 항목을 직접 조정합니다.", section_raw_attrs: "세부 속성",
+            edit_saved_hint: "미리보기에 반영했어요. ‘변경 적용’을 누르면 저장됩니다.",
+            modal_confirm_submit: "편집 내용과 수정 요청을 저장할까요?",
+            modal_success_direct_only: "편집 내용을 저장했어요.\n\nPPT 파일도 업데이트하려면 대화에서 다시 내보내기를 요청해주세요.",
+            modal_success_annotations_only: "수정 요청을 저장했어요.\n\n대화에서 ‘수정 요청 반영해줘’라고 말씀해주세요.",
+            modal_success_mixed: "편집 내용과 수정 요청을 저장했어요.\n\n대화에서 수정 요청 반영과 PPT 업데이트를 요청해주세요.",
+            modal_confirm_exit: "미리보기를 닫을까요?\n\n아직 적용하지 않은 편집과 수정 요청은 사라집니다.",
+            modal_success_exit: "미리보기를 종료했어요. 이 탭을 닫아도 됩니다.",
+            warn_matrix_transform: "배치를 미리보기에 반영했어요. PPT 파일도 업데이트하려면 대화에서 다시 내보내기를 요청해주세요.",
+            modal_matrix_transform_note: "\n\n배치를 바꾼 항목이 있어요. 저장 후 PPT 파일도 업데이트해주세요.",
+            kind_text: "글자", kind_image: "그림", kind_group: "묶음", kind_shape: "도형"
+        },
+        en: {
+            workspace_title: "Preview", panel_edit_annotate: "Edit slide", toggle_inspector: "Edit tools", close_inspector: "Close edit tools",
+            canvas_hint: "Select text or an image to make a change.", inspector_details: "Edit directly",
+            apply_hint: "Apply your requests, then return to the chat to have them incorporated.",
+            kind_text: "Text", kind_image: "Image", kind_group: "Group", kind_shape: "Shape"
+        },
+        ja: {
+            workspace_title: "プレビュー", panel_edit_annotate: "スライドを編集", toggle_inspector: "編集ツール", close_inspector: "編集ツールを閉じる",
+            canvas_hint: "文字や画像を選択して編集できます。", inspector_details: "直接編集",
+            apply_hint: "変更リクエストを保存したら、チャットで反映を依頼してください。",
+            kind_text: "文字", kind_image: "画像", kind_group: "グループ", kind_shape: "図形"
+        },
+        zh: {
+            workspace_title: "预览", panel_edit_annotate: "修改幻灯片", toggle_inspector: "编辑工具", close_inspector: "收起编辑工具",
+            canvas_hint: "选择文字或图片进行修改。", inspector_details: "直接编辑",
+            apply_hint: "保存修改要求后，请回到对话中请求应用。",
+            kind_text: "文字", kind_image: "图片", kind_group: "组合", kind_shape: "形状"
+        }
+    };
+    Object.keys(WORKSPACE_MESSAGES).forEach(function (lang) {
+        Object.assign(MESSAGES[lang], WORKSPACE_MESSAGES[lang]);
+    });
+
     var LANG = (function () {
         try {
             var stored = window.localStorage.getItem("ppt_lang");
@@ -374,6 +422,7 @@
         updateUndoButton();
         updatePendingStatus();
         initAnnotationQuickActions();
+        slideListSignature = "";
         loadSlides();
     }
 
@@ -403,6 +452,101 @@
     var navLastBtn        = document.getElementById("nav-last");
     var navCounterEl      = document.getElementById("nav-counter");
     var navNameEl         = document.getElementById("nav-name");
+    var objectInspector   = document.getElementById("object-inspector");
+    var slideListSignature = "";
+    var thumbnailCache = {};
+    var thumbnailSerial = 0;
+    var thumbnailObserver = null;
+
+    function slideDisplayName(name) {
+        return String(name).replace(/\.svg$/i, "").replace(/^\d+[_ -]+/, "").replace(/_/g, " ");
+    }
+
+    function elementLabel(el) {
+        var tag = localName(el);
+        var kind = tag === "text" || tag === "tspan" ? "text"
+            : tag === "image" ? "image" : tag === "g" ? "group" : "shape";
+        var text = (el.textContent || "").trim().replace(/\s+/g, " ");
+        return { kind: t("kind_" + kind), name: text ? text.slice(0, 64) : t("kind_" + kind) };
+    }
+
+    function fitSlideToCanvas() {
+        var root = svgContent.querySelector("svg");
+        if (!root) return;
+        var vb = root.viewBox.baseVal;
+        if (!vb.width || !vb.height) return;
+        var container = document.getElementById("svg-container");
+        var style = window.getComputedStyle(container);
+        var width = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        var height = container.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+        var scale = Math.max(0, Math.min(width / vb.width, height / vb.height));
+        svgContent.style.width = Math.floor(vb.width * scale) + "px";
+        svgContent.style.height = Math.floor(vb.height * scale) + "px";
+    }
+
+    function thumbnailFor(slide) {
+        var cached = thumbnailCache[slide.name];
+        if (cached && cached.mtime === slide.mtime) return cached.promise;
+        var record = { mtime: slide.mtime };
+        thumbnailCache[slide.name] = record;
+        record.promise = fetch("/api/slide/" + encodeURIComponent(slide.name))
+            .then(jsonOrThrow)
+            .then(function (data) {
+                if (data.error) throw new Error(data.error);
+                var doc = new DOMParser().parseFromString(sanitizeSvg(data.content), "image/svg+xml");
+                var root = doc.documentElement;
+                var prefix = "thumbnail-" + (++thumbnailSerial) + "-";
+                var ids = {};
+                [root].concat(Array.from(root.querySelectorAll("[id]"))).forEach(function (node) {
+                    if (!node.id) return;
+                    ids[node.id] = prefix + node.id;
+                    node.id = ids[node.id];
+                });
+                root.querySelectorAll("*").forEach(function (node) {
+                    Array.from(node.attributes).forEach(function (attr) {
+                        var value = attr.value.replace(/url\(#([^)]*)\)/g, function (match, id) {
+                            return ids[id] ? "url(#" + ids[id] + ")" : match;
+                        });
+                        if ((attr.name === "href" || attr.name === "xlink:href") && ids[value.slice(1)] && value[0] === "#") {
+                            value = "#" + ids[value.slice(1)];
+                        }
+                        if (value !== attr.value) node.setAttribute(attr.name, value);
+                    });
+                });
+                var vb = root.getAttribute("viewBox");
+                var dims = vb ? vb.trim().split(/[\s,]+/).map(Number) : [];
+                root.setAttribute("width", "100%");
+                root.setAttribute("height", "100%");
+                root.setAttribute("aria-hidden", "true");
+                return { content: new XMLSerializer().serializeToString(root), ratio: dims[2] > 0 && dims[3] > 0 ? dims[2] / dims[3] : 16 / 9 };
+            }).catch(function (err) {
+                if (thumbnailCache[slide.name] === record) delete thumbnailCache[slide.name];
+                throw err;
+            });
+        return record.promise;
+    }
+
+    function observeThumbnail(host, slide) {
+        function load() {
+            thumbnailFor(slide).then(function (result) {
+                if (!host.isConnected) return;
+                host.innerHTML = result.content;
+                host.style.aspectRatio = String(result.ratio);
+            }).catch(function () { /* The slide list keeps the parse-error state visible. */ });
+        }
+        if (!window.IntersectionObserver) { load(); return; }
+        if (!thumbnailObserver) {
+            thumbnailObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    thumbnailObserver.unobserve(entry.target);
+                    entry.target.loadThumbnail();
+                });
+            }, { root: slideListEl, rootMargin: "160px" });
+        }
+        host.loadThumbnail = load;
+        thumbnailObserver.observe(host);
+    }
 
     // ---- State ------------------------------------------------------
     var currentSlide      = null;   // filename, e.g. "slide_01.svg"
@@ -551,8 +695,9 @@
         } else {
             var idx = currentSlideIndex();
             navCounterEl.textContent = t("nav_counter", { current: idx + 1, total: total });
-            if (navNameEl) navNameEl.textContent = currentSlide;
+            if (navNameEl) navNameEl.textContent = slideDisplayName(currentSlide);
         }
+        document.getElementById("slide-count").textContent = String(total);
         var idx2 = currentSlideIndex();
         var hasCurrent = idx2 >= 0;
         if (navFirstBtn) navFirstBtn.disabled = !hasCurrent || idx2 === 0;
@@ -568,8 +713,12 @@
         return fetch("/api/slides")
             .then(function (res) { return res.json(); })
             .then(function (data) {
-                slideListEl.innerHTML = "";
                 var slides = data.slides || [];
+                var signature = LANG + JSON.stringify(slides);
+                if (signature === slideListSignature) return;
+                slideListSignature = signature;
+                if (thumbnailObserver) thumbnailObserver.disconnect();
+                slideListEl.innerHTML = "";
                 slideNames = slides.map(function (s) { return s.name; });
 
                 if (slides.length === 0) {
@@ -593,7 +742,7 @@
 
                 var currentExists = false;
                 var currentMtimeChanged = false;
-                slides.forEach(function (s) {
+                slides.forEach(function (s, index) {
                     if (s.name === currentSlide) {
                         currentExists = true;
                         // Compare against the mtime we recorded when we last rendered this slide.
@@ -608,18 +757,33 @@
                         slideMtimes[s.name] = s.mtime;
                     }
 
-                    var item = document.createElement("div");
+                    var item = document.createElement("button");
+                    item.type = "button";
                     item.className = "slide-item" + (s.name === currentSlide ? " active" : "");
                     if (s.ok === false) {
                         item.className += " slide-error";
                         item.title = t("slide_error_tooltip") + (s.error || "");
                     }
                     item.setAttribute("data-name", s.name);
+                    item.setAttribute("aria-label", (index + 1) + ". " + slideDisplayName(s.name));
+                    item.setAttribute("aria-current", s.name === currentSlide ? "page" : "false");
+
+                    var number = document.createElement("span");
+                    number.className = "slide-number";
+                    number.textContent = String(index + 1).padStart(2, "0");
+                    item.appendChild(number);
+                    var content = document.createElement("span");
+                    content.className = "slide-item-content";
+                    var thumbnail = document.createElement("span");
+                    thumbnail.className = "slide-thumbnail";
+                    thumbnail.setAttribute("aria-hidden", "true");
+                    content.appendChild(thumbnail);
 
                     var nameSpan = document.createElement("span");
                     nameSpan.className = "slide-name";
-                    nameSpan.textContent = s.name;
-                    item.appendChild(nameSpan);
+                    nameSpan.textContent = slideDisplayName(s.name);
+                    content.appendChild(nameSpan);
+                    item.appendChild(content);
 
                     if (s.annotation_count > 0) {
                         var badge = document.createElement("span");
@@ -632,6 +796,7 @@
                         selectSlide(s.name, item);
                     });
                     slideListEl.appendChild(item);
+                    if (s.ok !== false) observeThumbnail(thumbnail, s);
                 });
 
                 if (!currentSlide || !currentExists) {
@@ -654,7 +819,9 @@
     function selectSlide(name, el) {
         // Update active class in sidebar
         document.querySelectorAll(".slide-item").forEach(function (it) {
-            it.classList.remove("active");
+            var active = it.getAttribute("data-name") === name;
+            it.classList.toggle("active", active);
+            it.setAttribute("aria-current", active ? "page" : "false");
         });
         if (el) el.classList.add("active");
 
@@ -673,6 +840,7 @@
         fetch("/api/slide/" + encodeURIComponent(name))
             .then(function (res) { return res.json(); })
             .then(function (data) {
+                if (currentSlide !== name) return;
                 if (data.error) {
                     console.error("selectSlide:", data.error);
                     showError(t("err_load_slide") + data.error);
@@ -729,6 +897,7 @@
                     svgContent.style.display = "none";
                     return;
                 }
+                fitSlideToCanvas();
 
                 // Non-fatal warnings (e.g. icon inline failures): surface as a
                 // single combined toast so users know why something looks off.
@@ -865,6 +1034,7 @@
     function updateSelectionPanel() {
         var propsEl = elementPropsEl;
         var count = selectedElementIds.size;
+        objectInspector.style.display = count ? "block" : "none";
 
         if (count === 0) {
             selectedElementEl.classList.add("empty");
@@ -883,10 +1053,10 @@
             var eid = selectedElementIds.values().next().value;
             var el = svgContent.querySelector("#" + CSS.escape(eid));
             if (el) {
-                var tag = el.tagName.toLowerCase();
+                var label = elementLabel(el);
                 selectedElementEl.innerHTML =
-                    '<span class="el-tag">&lt;' + escapeHtml(tag) + '&gt;</span>' +
-                    '<span class="el-id">' + escapeHtml(eid) + '</span>';
+                    '<span class="element-kind">' + escapeHtml(label.kind) + '</span>' +
+                    '<span class="element-name">' + escapeHtml(label.name) + '</span>';
                 propsEl.innerHTML = renderEditableProps(el);
                 attachPropEditors(el);
             }
@@ -1662,12 +1832,13 @@
             if (tag) {
                 var tagSpan = document.createElement("span");
                 tagSpan.className = "ann-tag";
-                tagSpan.textContent = "<" + tag + ">";
+                tagSpan.textContent = el ? elementLabel(el).kind : tag;
                 leftSpan.appendChild(tagSpan);
             }
             var idSpan = document.createElement("span");
             idSpan.className = "ann-id";
-            idSpan.textContent = eid;
+            idSpan.textContent = el ? elementLabel(el).name : eid;
+            idSpan.title = eid;
             leftSpan.appendChild(idSpan);
 
             header.appendChild(leftSpan);
@@ -2982,6 +3153,22 @@
     // ================================================================
     //  Boot
     // ================================================================
+    var inspectorToggle = document.getElementById("btn-toggle-inspector");
+    function setInspectorOpen(open) {
+        document.body.classList.toggle("inspector-closed", !open);
+        inspectorToggle.setAttribute("aria-expanded", String(open));
+        document.getElementById("panel-right").setAttribute("aria-hidden", String(!open));
+        fitSlideToCanvas();
+    }
+    setInspectorOpen(window.innerWidth > 900);
+    inspectorToggle.addEventListener("click", function () {
+        setInspectorOpen(document.body.classList.contains("inspector-closed"));
+    });
+    document.getElementById("btn-close-inspector").addEventListener("click", function () {
+        setInspectorOpen(false);
+        inspectorToggle.focus();
+    });
+    new ResizeObserver(fitSlideToCanvas).observe(document.getElementById("svg-container"));
     applyI18n();
     initAnnotationQuickActions();
     updatePendingStatus();

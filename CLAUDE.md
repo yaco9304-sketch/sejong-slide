@@ -45,6 +45,10 @@ re-architectable source. Do not load either full owner before that answer.
 - Topic research, template creation, and post-route workflows load the next
   owner only when their own procedure declares a handoff.
 
+## Presentation Scope (install-local, standing preference)
+
+- Default presentation uses are elementary-student classroom lessons and teacher training / guidance materials. Focus recommendations and confirmation surfaces on these two uses. Offer other audience or industry presets only when explicitly requested in the current conversation.
+
 ## Font Policy (install-local, standing preference)
 
 - Every SVG-authored deck uses **Pretendard** as the fixed font family — do not propose or pick other families unless the user explicitly asks in the current conversation. Hierarchy comes from weight/size, not family switching. Direct-PPTX routes preserve source fonts unless their selected owner says otherwise. Full contract: [`strategist.md §g` install-local font lock](.claude/skills/ppt-master/references/strategist.md).
