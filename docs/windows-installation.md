@@ -52,7 +52,7 @@ Pass a script and its arguments to the launcher:
 .\sejong-slide.cmd --setup
 ```
 
-`--check` performs an offline installation check without downloading anything. `--setup` reruns setup to refresh dependencies or recover from an interrupted download. Use one of these options alone. Ordinary Python arguments, including `-c` and `-m`, are also supported.
+`--check` checks readiness, packages, and skill connections without downloading anything. Skill connection errors do not block the launcher, so you can run the reported repair command and check again. `--setup` reruns setup to refresh dependencies or recover from an interrupted download. Use one of these options alone. Ordinary Python arguments, including `-c` and `-m`, are also supported. The `.cmd` launcher forwards them directly to Python; the `.ps1` file only prepares the runtime.
 
 ## Troubleshooting
 

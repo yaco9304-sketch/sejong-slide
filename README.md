@@ -120,6 +120,8 @@ Python 설치를 요청할 필요가 없습니다. AI 에이전트 자체는 별
 ```
 
 macOS에서 더블클릭 실행이 차단되면 터미널에서 `bash ./sejong-slide`를 실행합니다.
+`--check`는 준비 상태·패키지·스킬 연결을 다운로드 없이 검사합니다.
+스킬 연결 오류가 있어도 실행기는 동작하므로, 안내된 복구 명령을 실행한 뒤 다시 검사할 수 있습니다.
 Windows의 상세 안내는 [설치 가이드](docs/windows-installation.md)를 참고하세요.
 PPTX 글꼴을 동일하게 보려면 번들된 [Pretendard 글꼴](.claude/skills/ppt-master/assets/fonts/Pretendard/)도 설치하세요.
 

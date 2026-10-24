@@ -9,7 +9,6 @@ case "${1:-}" in
     --check) shift; exec bash "$ROOT/install.sh" --check "$@" ;;
     --setup) shift; exec bash "$ROOT/install.sh" "$@" ;;
 esac
-cd -- "$ROOT"
 PYTHON="$ROOT/.venv/bin/python"
 READY="$ROOT/.sejong-tools/ready"
 if [ ! -x "$PYTHON" ] || [ ! -f "$READY" ] || \

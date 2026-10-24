@@ -24,17 +24,32 @@ ROOT=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 cd -- "$ROOT"
 TOOLS="$ROOT/.sejong-tools"
 PYTHON="$ROOT/.venv/bin/python"
+READY="$TOOLS/ready"
 VERIFY='import sys; assert sys.version_info >= (3, 10), "Python 3.10+ required"; import pptx, flask, PIL, fitz, requests, numpy; print("Python and core packages: OK")'
 STEP="checking the installation"
-trap 'code=$?; printf "\nSetup failed while %s. Fix the error above and run bash install.sh again.\n" "$STEP" >&2; exit "$code"' ERR
+report_failure() {
+    code=$?
+    if [ "$CHECK_ONLY" -eq 1 ]; then
+        printf '\nCheck failed while %s. Fix the reported errors above and run ./sejong-slide --check again.\n' "$STEP" >&2
+    else
+        printf '\nSetup failed while %s. Fix the error above and run bash install.sh again.\n' "$STEP" >&2
+    fi
+    exit "$code"
+}
+trap report_failure ERR
 
 if [ "$CHECK_ONLY" -eq 1 ]; then
-    if [ ! -x "$PYTHON" ]; then
-        printf 'Not installed. Run ./sejong-slide to set up Python automatically.\n' >&2
+    if [ ! -x "$PYTHON" ] || [ ! -f "$READY" ] || \
+            [ "$ROOT/requirements.txt" -nt "$READY" ] || \
+            [ "$ROOT/.claude/skills/ppt-master/requirements.txt" -nt "$READY" ]; then
+        printf 'Runtime setup is missing or outdated. Run ./sejong-slide --setup.\n' >&2
         exit 1
     fi
     PYTHONDONTWRITEBYTECODE=1 "$PYTHON" -I -c "$VERIFY"
     PYTHONDONTWRITEBYTECODE=1 "$PYTHON" -m pip check
+    STEP="checking skill connections"
+    "$PYTHON" .claude/skills/ppt-master/scripts/sync_codex_stubs.py --check
+    "$PYTHON" .claude/skills/ppt-master/scripts/check_runtime_contracts.py
     exit 0
 fi
 
@@ -95,11 +110,9 @@ printf '[3/4] Installing project requirements...\n'
 "$UV" pip install --quiet --python "$PYTHON" pip -r "$ROOT/requirements.txt"
 
 STEP="verifying the runtime"
-printf '[4/4] Verifying packages and skill connections...\n'
+printf '[4/4] Verifying Python packages...\n'
 "$PYTHON" -I -c "$VERIFY"
 "$UV" pip check --python "$PYTHON"
-"$PYTHON" .claude/skills/ppt-master/scripts/sync_codex_stubs.py --check
-"$PYTHON" .claude/skills/ppt-master/scripts/check_runtime_contracts.py
 touch "$TOOLS/ready"
 printf '\nReady. Open this folder in your AI editor and ask it to create a PPT.\n'
 printf 'Python tools can be run with: ./sejong-slide <script.py> [arguments]\n'
