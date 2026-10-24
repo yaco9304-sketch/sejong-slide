@@ -21,8 +21,9 @@ below add Codex-side enforcement; they never override the selected owner.
   the main SVG skill for a direct-PPTX route.
 - Path resolution: `${SKILL_DIR}` and bare relative paths (`references/...`,
   `workflows/...`, `scripts/...`, `templates/...`) resolve against the canonical
-  skill directory. Run all commands from the repository root. If `python3` is
-  missing (common on Windows), rerun the same command with `python`.
+  skill directory. Run all commands from the repository root. Use the automatic
+  Python launcher described in `CLAUDE.md` Local Runtime in place of `python3`
+  or `python`; it prepares the project environment when Python is missing.
 
 ## PPT requests — MANDATORY procedure
 

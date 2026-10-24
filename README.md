@@ -69,29 +69,62 @@ projects/<프로젝트>/svg_final/                        ← 브라우저로 �
 
 ---
 
-## 설치 (10분)
+## 설치 — Python 사전 설치 없이 시작
 
-**1단계 — Python 3.10+**
+저장소를 받은 뒤 첫 실행에서 Python과 필요한 패키지를 자동으로 준비합니다.
+이미 Python 3.10 이상이 있으면 재사용하고, 없으면 전용 Python 3.12를 내려받습니다.
 
-[python.org](https://www.python.org/downloads/)에서 설치할 때 **"Add to PATH" 체크** 필수. Windows는 [단계별 가이드](docs/windows-installation.md) 참고.
-
-**2단계 — AI 에이전트**
-
-[Claude Code](https://claude.ai/code)(CLI 또는 VS Code/JetBrains 확장) 권장 — 이 프로젝트가 가장 많이 검증된 환경입니다.
-
-**Codex도 공식 지원합니다** — Codex CLI든 **ChatGPT 데스크탑 앱의 Codex**든, 이 저장소 폴더를 열기만 하면 됩니다. Codex용 실행 규칙([`AGENTS.md`](AGENTS.md))과 스킬 발견 스텁(`.codex/skills/`)이 저장소에 이미 포함되어 있어 별도 설정이 필요 없습니다.
-
-그 밖에 Cursor, VS Code Copilot 등 파일 읽기/쓰기 + 명령 실행이 되는 에이전트라면 동작합니다.
-
-**3단계 — 저장소 받기 + 의존성 설치**
+**1단계 — 저장소 받기**
 
 ```bash
 git clone https://github.com/yaco9304-sketch/sejong-slide.git
 cd sejong-slide
-pip install -r requirements.txt
 ```
 
-받은 폴더를 에이전트에서 엽니다 — IDE형이면 File → Open Folder, CLI형이면 `cd sejong-slide` 후 실행.
+Git이 없으면 GitHub의 **Code → Download ZIP**으로 받은 뒤 압축을 풀어도 됩니다.
+
+**2단계 — AI 편집기에서 바로 PPT 요청**
+
+Claude Code, Codex 또는 사용하는 AI 편집기에서 이 저장소 폴더를 열고 요청합니다.
+첫 Python 도구 실행에서 필요한 환경을 자동으로 준비하므로, 설치 프로그램을 따로 실행하거나
+Python 설치를 요청할 필요가 없습니다. AI 에이전트 자체는 별도로 준비해야 합니다.
+
+> "초등학교 6학년 과학 물질의 연소 단원 수업용 PPT 만들어줘"
+
+최초 실행은 인터넷 연결이 필요합니다. 관리자 권한이나 시스템 Python 변경 없이
+`.venv/`에 실행 환경을 만들고, 필요한 다운로드와 캐시는 `.sejong-tools/`에 보관합니다.
+이 두 폴더는 Git에 올라가지 않습니다. 다시 실행하면 준비된 환경을 재사용합니다.
+
+**선택 — 실행기를 직접 열어 미리 준비하기**
+
+| 환경 | 실행 방법 |
+|---|---|
+| Windows 10/11 | `sejong-slide.cmd` 더블클릭 |
+| macOS | `sejong-slide.command` 더블클릭 |
+| macOS / Linux 터미널 | `bash ./sejong-slide` |
+
+스크립트를 직접 실행할 때도 같은 실행기를 사용합니다.
+
+```bash
+# macOS / Linux — 일반 Python 실행처럼 뒤에 스크립트와 인수를 붙입니다.
+./sejong-slide .claude/skills/ppt-master/scripts/project_manager.py --help
+./sejong-slide --check     # 다운로드 없이 설치 상태 확인
+./sejong-slide --setup     # 패키지 재설치 / 설치 복구
+```
+
+```powershell
+# Windows
+.\sejong-slide.cmd .claude/skills/ppt-master/scripts/project_manager.py --help
+.\sejong-slide.cmd --check
+.\sejong-slide.cmd --setup
+```
+
+macOS에서 더블클릭 실행이 차단되면 터미널에서 `bash ./sejong-slide`를 실행합니다.
+Windows의 상세 안내는 [설치 가이드](docs/windows-installation.md)를 참고하세요.
+PPTX 글꼴을 동일하게 보려면 번들된 [Pretendard 글꼴](.claude/skills/ppt-master/assets/fonts/Pretendard/)도 설치하세요.
+
+설치기는 [uv 공식 설치기](https://docs.astral.sh/uv/reference/installer/)와
+[Python 자동 관리 기능](https://docs.astral.sh/uv/guides/install-python/)을 사용합니다.
 
 **4단계 (선택) — AI 이미지 생성**
 

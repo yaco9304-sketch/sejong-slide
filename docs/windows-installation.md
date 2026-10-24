@@ -1,151 +1,77 @@
 # Windows Installation Guide
 
-This guide walks you through installing sejong-slide on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
+sejong-slide prepares Python and its packages on first use. You do not need to install Python or configure PATH beforehand. Use Windows 10/11 with PowerShell 5.1 or newer and an internet connection for the initial download.
 
----
+## 1. Download the repository
 
-## Step 1 — Install Python (Required)
-
-Python is the only hard requirement.
-
-1. Go to **[python.org/downloads](https://www.python.org/downloads/)** and download the latest **Python 3.10+** installer.
-
-2. **⚠️ CRITICAL: Check "Add python.exe to PATH"** during installation — this is the single most common mistake on Windows. Skipping this will break every step that follows.
-
-3. After installation, open **PowerShell** (search "PowerShell" in Start menu) and verify:
-
-   ```powershell
-   python --version
-   ```
-
-   You should see `Python 3.12.x` or similar. If you see "Python was not found" or it opens the Microsoft Store, see [Troubleshooting](#python-was-not-found-or-opens-microsoft-store) below.
-
-> **💡 Tip**: Python installed via Anaconda or Miniconda works too — just make sure `python --version` shows 3.10+.
-
----
-
-## Step 2 — Download the Project
-
-**Option A — Download ZIP** (easiest):
-
-1. Go to [github.com/hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)
-2. Click the green **Code** button → **Download ZIP**
-3. Unzip to `C:\Users\YourName\ppt-master`
-
-**Option B — Git Clone** (requires [Git](https://git-scm.com/downloads)):
+Clone the public repository:
 
 ```powershell
-git clone https://github.com/hugohe3/ppt-master.git
-cd ppt-master
+git clone https://github.com/yaco9304-sketch/sejong-slide.git
+cd sejong-slide
 ```
 
----
+Without Git, use **Code → Download ZIP** on [GitHub](https://github.com/yaco9304-sketch/sejong-slide), then extract the entire archive. Keep the hidden `.claude` and `.codex` directories.
 
-## Step 3 — Install Dependencies
+## 2. Open the folder in your AI editor
+
+Open the downloaded `sejong-slide` folder in Codex, Claude Code, or another supported AI editor, then ask it to create a presentation. The repository instructions use the launcher for Python tools. It prepares Python and packages automatically when the agent first runs a tool; no separate setup step is needed.
+
+The AI editor itself is a separate prerequisite.
+
+## Optional: prepare the runtime yourself
+
+Double-click **`sejong-slide.cmd`**, or run it in PowerShell:
 
 ```powershell
-cd C:\Users\YourName\ppt-master   # ← adjust to your actual path
-pip install -r requirements.txt
+.\sejong-slide.cmd
 ```
 
-> If `pip` is not recognized, try `python -m pip install -r requirements.txt`.
+The launcher:
 
-Wait for it to finish. You should see `Successfully installed ...` at the end.
+1. Finds an existing Python 3.10+ installation, or downloads managed Python 3.12 when none is available.
+2. Creates a local `.venv` and installs `requirements.txt` using uv.
+3. Checks the core imports, dependency compatibility, and repository skill connections.
+4. Reuses the prepared environment on later runs.
 
----
+The bootstrap tool, managed Python, and download cache live in `.sejong-tools`. Packages live in `.venv`. Neither directory is committed. The installer does not require administrator privileges, edit the persistent PATH, or change the system Python. Its PowerShell execution-policy option applies only to the launched process.
 
-## Step 4 — Verify Your Setup
+The bootstrap downloads come from [Astral's official installer](https://docs.astral.sh/uv/reference/installer/) and its [managed Python distribution](https://docs.astral.sh/uv/guides/install-python/); Python packages come from the configured package index (PyPI by default).
+
+## Slide fonts
+
+For consistent slide appearance, install the bundled Pretendard `.otf` files from `.claude\skills\ppt-master\assets\fonts\Pretendard` in Windows Fonts settings. Generated PPTX files do not embed fonts.
+
+## Direct commands
+
+Pass a script and its arguments to the launcher:
 
 ```powershell
-python -c "import pptx; import fitz; print('All core dependencies OK')"
+.\sejong-slide.cmd .claude/skills/ppt-master/scripts/project_manager.py --help
+.\sejong-slide.cmd --check
+.\sejong-slide.cmd --setup
 ```
 
-✅ Output: `All core dependencies OK` → you're good.
-
-❌ Error → see [Troubleshooting](#troubleshooting) below.
-
----
-
-## Step 5 — Run a Minimal Example
-
-Open your AI editor (Cursor, VS Code + Copilot, etc.), open the `ppt-master` folder, and type in the chat:
-
-```
-Please create a simple 3-page test PPT with a cover, one content page, and a closing page. Topic: "Hello World".
-```
-
-If a `.pptx` file appears in `exports/` that opens in PowerPoint — **you're done.**
-
----
-
-## Step 6 — Optional Enhancements (most users can skip this)
-
-With Python and `requirements.txt` installed, you already have everything needed to generate presentations. PPTX export writes native DrawingML shapes, so it does not require CairoSVG, GTK, or a separate SVG rasterization stack. The item below is an **edge-case fallback** — install it only if you hit the specific scenario.
-
-| Enhancement | Install only if… | How to install | Verify |
-|-------------|-----------------|----------------|--------|
-| **Pandoc** — legacy document formats | You need to convert `.doc`, `.odt`, `.rtf`, `.tex`, `.rst`, `.org`, or `.typ`. `.docx`/`.html`/`.epub`/`.ipynb` work natively in Python. | Download `.msi` from [pandoc.org](https://pandoc.org/installing.html) | `pandoc --version` |
-
----
+`--check` performs an offline installation check without downloading anything. `--setup` reruns setup to refresh dependencies or recover from an interrupted download. Use one of these options alone. Ordinary Python arguments, including `-c` and `-m`, are also supported.
 
 ## Troubleshooting
 
-### `python` was not found or opens Microsoft Store
+### Downloads fail
 
-**Cause**: Python isn't in your system PATH.
+Check the internet connection and any organization proxy settings, then rerun `sejong-slide.cmd --setup`. Allow HTTPS access to `astral.sh`, GitHub releases, and the Python package index. Do not disable TLS certificate checks.
 
-**Fix 1** — Re-run the Python installer → **Modify** → check **"Add Python to environment variables"**.
+### Existing `.venv` is unusable
 
-**Fix 2** — Manually add to PATH:
-1. Run `where python` in PowerShell first to find the actual path (e.g. `C:\Users\YourName\AppData\Local\Programs\Python\Python312\python.exe`)
-2. Search "Environment Variables" in Start menu
-3. Find `Path` → **Edit** → add the **directory** from step 1 and its `Scripts` subfolder:
-   ```
-   C:\Users\YourName\AppData\Local\Programs\Python\Python312
-   C:\Users\YourName\AppData\Local\Programs\Python\Python312\Scripts
-   ```
-4. Click OK, then **restart PowerShell**
+This can happen after moving the repository or removing its original Python installation. Close processes using this project, rename `.venv`, then run `sejong-slide.cmd --setup`. The installer leaves the old directory in place for you to inspect; it does not delete it automatically.
 
-**Fix 3** — Try `python3` or `py` instead.
+### PowerShell is blocked by organization policy
 
-### A `python3` command fails (exit 49 / opens Microsoft Store)
+The launcher uses the built-in Windows PowerShell. Organization-enforced policies may still prevent script execution. Ask your administrator to permit the local launcher; it does not change those policies.
 
-The python.org installer ships `python.exe` but not `python3.exe`. **Just replace `python3` with `python` in the command** (the AI agent usually switches to `python` and continues on its own too).
+### `python` still opens Microsoft Store
 
-### `pip install` fails with permission errors
+Use `sejong-slide.cmd` instead of the global `python` command. Managed Python is intentionally local to this repository and is not added to the persistent PATH.
 
-```powershell
-pip install --user -r requirements.txt
-```
+### Need help
 
-Or run PowerShell as Administrator.
-
-### `pip install` fails due to network issues
-
-```powershell
-pip install -r requirements.txt --proxy http://your-proxy:port
-```
-
-### `ModuleNotFoundError`
-
-`pip` installed to a different Python. Use `python -m pip install -r requirements.txt` to match.
-
-### `import fitz` fails
-
-1. Upgrade pip: `python -m pip install --upgrade pip`
-2. Pre-built wheel: `pip install PyMuPDF --only-binary :all:`
-3. Still failing → install [Visual C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-
-### PowerShell says "running scripts is disabled"
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
----
-
-## Still stuck?
-
-- 📖 [FAQ](./faq.md)
-- 🐛 [GitHub Issues](https://github.com/hugohe3/ppt-master/issues) — include your Python version, Windows version, and full error message
-- 💬 [GitHub Discussions](https://github.com/hugohe3/ppt-master/discussions)
+Open an issue at [sejong-slide/issues](https://github.com/yaco9304-sketch/sejong-slide/issues) with the Windows version and the complete error message. Do not include API keys or private material.

@@ -23,8 +23,10 @@ On invocation:
    mentioned inside the skill (`references/...`, `workflows/...`, `scripts/...`,
    `templates/...`) resolve against that directory — never against
    `.codex/skills/`.
-3. Run all commands from the repository root. On Windows installs without
-   `python3.exe`, rerun the same command with `python`.
+3. Run all commands from the repository root. For Python tools, replace the
+   `python3` / `python` prefix with `./sejong-slide` (macOS/Linux) or
+   `.\sejong-slide.cmd` (Windows). This launcher prepares the local Python
+   environment automatically on first use; see `CLAUDE.md` Local Runtime.
 
 4. **Codex adaptation**: the canonical skill was written for Claude Code, which
    shells out through `codex exec` to reach `image_gen`. Inside Codex the

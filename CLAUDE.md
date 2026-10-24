@@ -11,6 +11,19 @@ Do not preload the main SVG skill for a direct-PPTX route. For a repository edit
 read the owner of the contract being changed; the main skill is authoritative only
 for the main SVG family and the shared SVG steps that explicitly invoke it.
 
+## Local Runtime (first use is automatic)
+
+- Run repository Python commands through `./sejong-slide <script.py> [args]`
+  on macOS/Linux or `.\sejong-slide.cmd <script.py> [args]` on Windows. Substitute
+  this launcher for the `python3` / `python` prefix in workflow examples. It uses
+  the repository's `.venv` and prepares it automatically on first use.
+- Do not ask users to install Python manually. The launcher reuses Python 3.10+
+  when available; otherwise it downloads managed Python 3.12 and installs the
+  repository requirements locally. No administrator access or persistent PATH
+  change is needed. First setup needs internet access.
+- `--check` checks an existing installation without downloads; `--setup` repairs
+  or refreshes it. These setup actions do not replace route-owned PPT gates.
+
 ## Project Overview
 
 sejong-slide is a presentation workflow package with SVG-authoring and direct-PPTX

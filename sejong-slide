@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Run Python tools, bootstrapping the local runtime on first use.
+set -euo pipefail
+ROOT=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+case "${1:-}" in
+    -h|--help)
+        printf 'Usage: ./sejong-slide [--setup | --check | <Python arguments>]\nFirst use prepares Python and requirements automatically.\n'
+        exit 0 ;;
+    --check) shift; exec bash "$ROOT/install.sh" --check "$@" ;;
+    --setup) shift; exec bash "$ROOT/install.sh" "$@" ;;
+esac
+cd -- "$ROOT"
+PYTHON="$ROOT/.venv/bin/python"
+READY="$ROOT/.sejong-tools/ready"
+if [ ! -x "$PYTHON" ] || [ ! -f "$READY" ] || \
+        [ "$ROOT/requirements.txt" -nt "$READY" ] || \
+        [ "$ROOT/.claude/skills/ppt-master/requirements.txt" -nt "$READY" ]; then
+    bash "$ROOT/install.sh" >&2
+fi
+if [ "$#" -eq 0 ]; then
+    printf 'sejong-slide is ready. Open this folder in your AI editor and ask for a PPT.\n'
+    printf 'Check setup: ./sejong-slide --check\n'
+    exit 0
+fi
+exec "$PYTHON" "$@"

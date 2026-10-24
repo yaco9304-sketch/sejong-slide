@@ -1,1 +1,6 @@
 docs/handoff/evidence/2026-08-01-pipeline-speed-full-cold-ab/* text eol=lf
+/install.sh text eol=lf
+/sejong-slide text eol=lf
+/sejong-slide.command text eol=lf
+/sejong-slide.ps1 text eol=lf
+/sejong-slide.cmd text eol=crlf
